@@ -122,6 +122,7 @@ const BRAND_DOMAINS = {
   'Du Recharge Card': 'du.ae',
 };
 
+
 function logoUrl(slug) {
   return `https://cdn.simpleicons.org/${slug}`;
 }
@@ -135,7 +136,7 @@ function googleFaviconUrl(domain) {
 }
 
 function cleanBrandName(productName) {
-  return productName
+  return (productName || 'Gift Card')
     .replace(/ Gift Card| Prepaid Card| Recharge Card/gi, '')
     .replace(/&/g, 'and')
     .replace(/\+/g, ' Plus ')
@@ -143,26 +144,26 @@ function cleanBrandName(productName) {
 }
 
 function makeMonogramSvg(label) {
-  const clean = label.replace(/[^A-Za-z0-9 ]/g, ' ').trim();
+  const clean = cleanBrandName(label).replace(/[^A-Za-z0-9 ]/g, ' ').trim();
   const chars = clean.split(/\s+/).filter(Boolean).slice(0, 2).map(part => part[0]).join('').toUpperCase() || 'GC';
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#d7e8ff"/></linearGradient></defs><rect width="128" height="128" rx="28" fill="url(#g)"/><text x="64" y="78" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="46" text-anchor="middle" fill="#111111">${chars}</text></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#d7e8ff"/></linearGradient></defs><rect width="128" height="128" rx="28" fill="url(#g)"/><text x="64" y="78" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="44" text-anchor="middle" fill="#111111">${chars}</text></svg>`;
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
 
-function makeLogoImage(productName, fallbackText = '') {
+function makeLogoImage(productName) {
   const slug = BRAND_LOGOS[productName];
   const domain = BRAND_DOMAINS[productName];
-  const label = cleanBrandName(productName || fallbackText || 'Gift Card');
+  const label = cleanBrandName(productName);
 
   const img = document.createElement('img');
   img.className = 'brand-logo-img';
-  img.alt = `${label} brand icon`;
+  img.alt = `${label} brand logo`;
   img.loading = 'lazy';
 
   if (domain) {
     img.src = googleFaviconUrl(domain);
     img.onerror = () => {
-      if (domain && !img.dataset.usedClearbit) {
+      if (!img.dataset.usedClearbit) {
         img.dataset.usedClearbit = 'true';
         img.src = domainLogoUrl(domain);
         return;
@@ -196,76 +197,331 @@ function applyOfficialLogos() {
     const productName = card.dataset.name;
     const iconBox = card.querySelector('.card-brand-icon');
     if (!iconBox) return;
-
-    const existingEmoji = iconBox.textContent.trim();
-    const img = makeLogoImage(productName, existingEmoji);
+    const img = makeLogoImage(productName);
     iconBox.textContent = '';
     iconBox.classList.add('has-logo');
     iconBox.appendChild(img);
   });
 }
 
-// ---- UPDATE CARD PRICE from select ----
+
+// ---- STATE ----
+let currentOrderItems = [];
+let currentSubtotal = 0;
+let currentDiscount = 0;
+let currentTotal = 0;
+let currentDiscountCode = '';
+let checkoutMode = 'single';
+let cartItems = [];
+const CART_KEY = 'giftwalmart_cart';
+const FIRST_PURCHASE_KEY = 'giftwalmart_first_purchase_complete';
+const NEW20_USED_KEY = 'giftwalmart_new20_used';
+
+// ---- PRODUCT HELPERS ----
+function getCardProduct(card) {
+  return {
+    name: card.dataset.name,
+    price: parseFloat(card.dataset.price),
+    color: card.dataset.color,
+    color2: card.dataset.color2,
+    logoSlug: BRAND_LOGOS[card.dataset.name] || null,
+    quantity: 1,
+  };
+}
+
+function itemKey(item) {
+  return `${item.name}__${item.price}`;
+}
+
+function money(value) {
+  return `$${Number(value || 0).toFixed(2)}`;
+}
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }[ch]));
+}
+
+function coinIconForMethod(method) {
+  if (method === 'BTC') return 'assets/btc.svg';
+  if (method === 'ETH') return 'assets/eth.svg';
+  return 'assets/usdt.svg';
+}
+
+function cartSubtotal() {
+  return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+}
+
+function loadCart() {
+  try {
+    cartItems = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+  } catch (e) {
+    cartItems = [];
+  }
+  renderCart();
+}
+
+function saveCart() {
+  localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
+}
+
 function updateCardPrice(select) {
   const card = select.closest('.gift-card');
   card.dataset.price = select.value;
 }
 
-// ---- OPEN PAYMENT MODAL ----
+function addToCart(card) {
+  const product = getCardProduct(card);
+  const key = itemKey(product);
+  const existing = cartItems.find(item => itemKey(item) === key);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cartItems.push(product);
+  }
+  saveCart();
+  renderCart();
+  showNotif(`${product.name} added to cart.`, 'success');
+}
+
+function removeCartItem(index) {
+  cartItems.splice(index, 1);
+  saveCart();
+  renderCart();
+}
+
+function changeCartQty(index, delta) {
+  if (!cartItems[index]) return;
+  cartItems[index].quantity += delta;
+  if (cartItems[index].quantity <= 0) {
+    cartItems.splice(index, 1);
+  }
+  saveCart();
+  renderCart();
+}
+
+function toggleCart(show) {
+  const overlay = document.getElementById('cartOverlay');
+  if (!overlay) return;
+  overlay.classList.toggle('active', !!show);
+  document.body.classList.toggle('cart-open', !!show);
+}
+
+function renderCart() {
+  const count = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = cartSubtotal();
+
+  const countEl = document.getElementById('cartCount');
+  const subtotalEl = document.getElementById('cartSubtotal');
+  const itemsEl = document.getElementById('cartItems');
+
+  if (countEl) countEl.textContent = count;
+  if (subtotalEl) subtotalEl.textContent = money(subtotal);
+
+  if (!itemsEl) return;
+
+  if (!cartItems.length) {
+    itemsEl.innerHTML = '<div class="empty-cart">Your cart is empty.</div>';
+    return;
+  }
+
+  itemsEl.innerHTML = cartItems.map((item, index) => `
+    <div class="cart-item">
+      <div class="cart-item-main">
+        <div class="cart-item-title">${escapeHtml(item.name)}</div>
+        <div class="cart-item-meta">${money(item.price)} × ${item.quantity}</div>
+      </div>
+      <div class="cart-item-actions">
+        <button type="button" onclick="changeCartQty(${index}, -1)">−</button>
+        <span>${item.quantity}</span>
+        <button type="button" onclick="changeCartQty(${index}, 1)">+</button>
+        <button class="cart-remove" type="button" onclick="removeCartItem(${index})">Remove</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function checkoutCart() {
+  if (!cartItems.length) {
+    showNotif('Your cart is empty.', 'warn');
+    return;
+  }
+  toggleCart(false);
+  const items = cartItems.map(item => ({ ...item }));
+  setupOrder(items, 'cart');
+}
+
 function openPayment(card) {
-  currentProduct = {
-    name: card.dataset.name,
-    price: parseFloat(card.dataset.price),
-    color: card.dataset.color,
-    color2: card.dataset.color2,
-    emoji: card.dataset.emoji,
-    logoSlug: BRAND_LOGOS[card.dataset.name] || null,
-  };
-  currentPrice = currentProduct.price;
+  setupOrder([getCardProduct(card)], 'single');
+}
 
-  // Modal header
+function setupOrder(items, mode = 'single') {
+  checkoutMode = mode;
+  currentOrderItems = items.map(item => ({ ...item }));
+  currentSubtotal = currentOrderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  currentDiscount = 0;
+  currentTotal = currentSubtotal;
+  currentDiscountCode = '';
+  selectedMethod = null;
+  currentPrice = currentTotal;
+  currentProduct = currentOrderItems.length === 1
+    ? currentOrderItems[0]
+    : {
+        name: `Cart Checkout (${currentOrderItems.reduce((sum, item) => sum + item.quantity, 0)} cards)`,
+        price: currentSubtotal,
+        color: '#00E5A0',
+        color2: '#00B8FF',
+      };
+
   document.getElementById('modalProductName').textContent = currentProduct.name;
-  document.getElementById('modalAmountDisplay').textContent = `$${currentPrice.toFixed(2)} USD`;
+  document.getElementById('modalAmountDisplay').textContent = `${money(currentTotal)} USD`;
 
-  // Preview card
   const previewCard = document.getElementById('previewCard');
-  previewCard.style.background = `linear-gradient(135deg, ${currentProduct.color}, ${currentProduct.color2})`;
+  previewCard.style.background = `linear-gradient(135deg, ${currentProduct.color || '#00E5A0'}, ${currentProduct.color2 || '#00B8FF'})`;
   const previewIcon = document.getElementById('previewEmoji');
   previewIcon.textContent = '';
-  const previewLogo = makeLogoImage(currentProduct.name, currentProduct.emoji);
-  if (previewLogo) {
+  const previewLogo = currentOrderItems.length === 1
+    ? makeLogoImage(currentOrderItems[0].name)
+    : makeMonogramSvg('Cart');
+  if (typeof previewLogo === 'string') {
+    const img = document.createElement('img');
+    img.src = previewLogo;
+    img.className = 'preview-logo-img';
+    img.alt = 'Cart';
+    previewIcon.appendChild(img);
+  } else if (previewLogo) {
     previewLogo.classList.add('preview-logo-img');
-    previewIcon.classList.add('has-logo');
     previewIcon.appendChild(previewLogo);
-  } else {
-    previewIcon.classList.remove('has-logo');
-    previewIcon.innerHTML = '<svg class="ui-icon"><use href="#i-gift"></use></svg>';
   }
-  document.getElementById('previewBrand').textContent = currentProduct.name.split(' ').slice(0, 2).join(' ').toUpperCase();
+  document.getElementById('previewBrand').textContent = currentOrderItems.length === 1
+    ? currentOrderItems[0].name.split(' ').slice(0, 2).join(' ').toUpperCase()
+    : 'CART CHECKOUT';
 
-  // Calculate rates
-  const usdtAmount = (currentPrice * RATES.USDT_PER_USD).toFixed(4);
-  const btcAmount  = (currentPrice * RATES.USDT_PER_USD / RATES.BTC_USDT).toFixed(8);
-  const ethAmount  = (currentPrice * RATES.USDT_PER_USD / RATES.ETH_USDT).toFixed(6);
+  const discountInput = document.getElementById('discountCode');
+  if (discountInput) discountInput.value = '';
+  const msg = document.getElementById('discountMessage');
+  if (msg) {
+    msg.className = 'discount-message';
+    msg.textContent = 'NEW20: 20% off first purchase over $500. Maximum discount $1000.';
+  }
 
-  document.getElementById('rateUSDT').textContent = `${usdtAmount} USDT`;
-  document.getElementById('rateBTC').textContent  = `${btcAmount} BTC`;
-  document.getElementById('rateETH').textContent  = `${ethAmount} ETH`;
-
-  // Reset state
-  selectedMethod = null;
   document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('selected'));
   document.getElementById('selectedMethodBox').style.display = 'none';
 
-  // Show step 1
+  renderOrderSummary();
+  updateCryptoRates();
+  resetForm();
   showStep('step1');
 
-  // Open modal
   document.getElementById('paymentModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-// ---- CLOSE MODAL ----
+function renderOrderSummary() {
+  const list = document.getElementById('orderItemsList');
+  if (list) {
+    list.innerHTML = currentOrderItems.map(item => `
+      <div class="order-item-row">
+        <span>${escapeHtml(item.name)}${item.quantity > 1 ? ` × ${item.quantity}` : ''}</span>
+        <strong>${money(item.price * item.quantity)}</strong>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('summarySubtotal').textContent = money(currentSubtotal);
+  document.getElementById('summaryTotal').textContent = money(currentTotal);
+  document.getElementById('modalAmountDisplay').textContent = `${money(currentTotal)} USD`;
+
+  const discountLine = document.getElementById('summaryDiscountLine');
+  if (currentDiscount > 0) {
+    discountLine.style.display = 'flex';
+    document.getElementById('summaryDiscount').textContent = `-${money(currentDiscount)}`;
+  } else {
+    discountLine.style.display = 'none';
+    document.getElementById('summaryDiscount').textContent = '-$0.00';
+  }
+}
+
+function applyDiscountCode() {
+  const input = document.getElementById('discountCode');
+  const msg = document.getElementById('discountMessage');
+  const code = (input?.value || '').trim().toUpperCase();
+
+  currentDiscount = 0;
+  currentDiscountCode = '';
+  currentTotal = currentSubtotal;
+
+  if (!code) {
+    if (msg) {
+      msg.className = 'discount-message warn';
+      msg.textContent = 'Enter a discount code first.';
+    }
+    renderOrderSummary();
+    updateCryptoRates();
+    return;
+  }
+
+  if (code !== 'NEW20') {
+    if (msg) {
+      msg.className = 'discount-message warn';
+      msg.textContent = 'Invalid discount code.';
+    }
+    renderOrderSummary();
+    updateCryptoRates();
+    return;
+  }
+
+  if (localStorage.getItem(FIRST_PURCHASE_KEY) === '1' || localStorage.getItem(NEW20_USED_KEY) === '1') {
+    if (msg) {
+      msg.className = 'discount-message warn';
+      msg.textContent = 'NEW20 is only available on the first purchase.';
+    }
+    renderOrderSummary();
+    updateCryptoRates();
+    return;
+  }
+
+  if (currentSubtotal < 500) {
+    if (msg) {
+      msg.className = 'discount-message warn';
+      msg.textContent = 'NEW20 requires a subtotal of at least $500.';
+    }
+    renderOrderSummary();
+    updateCryptoRates();
+    return;
+  }
+
+  currentDiscount = Math.min(currentSubtotal * 0.20, 1000);
+  currentTotal = Math.max(currentSubtotal - currentDiscount, 0);
+  currentDiscountCode = 'NEW20';
+
+  if (msg) {
+    msg.className = 'discount-message success';
+    msg.textContent = `NEW20 applied. You saved ${money(currentDiscount)}.`;
+  }
+
+  renderOrderSummary();
+  updateCryptoRates();
+  if (selectedMethod) {
+    refreshSelectedPayment();
+  }
+}
+
+function updateCryptoRates() {
+  const usdtAmount = (currentTotal * RATES.USDT_PER_USD).toFixed(4);
+  const btcAmount  = (currentTotal * RATES.USDT_PER_USD / RATES.BTC_USDT).toFixed(8);
+  const ethAmount  = (currentTotal * RATES.USDT_PER_USD / RATES.ETH_USDT).toFixed(6);
+
+  document.getElementById('rateUSDT').textContent = `${usdtAmount} USDT`;
+  document.getElementById('rateBTC').textContent  = `${btcAmount} BTC`;
+  document.getElementById('rateETH').textContent  = `${ethAmount} ETH`;
+}
+
 function closePayment() {
   document.getElementById('paymentModal').classList.remove('active');
   document.body.style.overflow = '';
@@ -280,7 +536,6 @@ function resetForm() {
   selectedMethod = null;
 }
 
-// ---- STEP NAVIGATION ----
 function showStep(stepId) {
   ['step1','step2','step3'].forEach(id => {
     document.getElementById(id).classList.add('hidden');
@@ -303,6 +558,7 @@ function goToPayment() {
     return;
   }
 
+  updateCryptoRates();
   showStep('step2');
 }
 
@@ -310,20 +566,24 @@ function backToStep1() {
   showStep('step1');
 }
 
-// ---- SELECT PAYMENT METHOD ----
 function selectPayment(el, method) {
   document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
   selectedMethod = method;
+  refreshSelectedPayment();
+}
 
-  const usdtAmount = (currentPrice * RATES.USDT_PER_USD).toFixed(4);
-  const btcAmount  = (currentPrice * RATES.USDT_PER_USD / RATES.BTC_USDT).toFixed(8);
-  const ethAmount  = (currentPrice * RATES.USDT_PER_USD / RATES.ETH_USDT).toFixed(6);
+function refreshSelectedPayment() {
+  if (!selectedMethod) return;
+
+  const usdtAmount = (currentTotal * RATES.USDT_PER_USD).toFixed(4);
+  const btcAmount  = (currentTotal * RATES.USDT_PER_USD / RATES.BTC_USDT).toFixed(8);
+  const ethAmount  = (currentTotal * RATES.USDT_PER_USD / RATES.ETH_USDT).toFixed(6);
 
   let cryptoAmount = '';
   let methodLabel = '';
 
-  switch(method) {
+  switch(selectedMethod) {
     case 'USDT-BEP20':
       cryptoAmount = `${usdtAmount} USDT (BEP20)`;
       methodLabel = 'USDT BEP20';
@@ -345,41 +605,59 @@ function selectPayment(el, method) {
   document.getElementById('selectedMethodBox').style.display = 'block';
   document.getElementById('selectedMethodName').textContent = methodLabel;
   document.getElementById('selectedAmountCrypto').textContent = cryptoAmount;
-  document.getElementById('selectedAddr').textContent = WALLETS[method];
+  document.getElementById('selectedAddr').textContent = WALLETS[selectedMethod];
+
+  const icon = document.getElementById('selectedCoinIcon');
+  if (icon) {
+    icon.src = coinIconForMethod(selectedMethod);
+    icon.alt = methodLabel;
+  }
 }
 
-// ---- CONFIRM PAYMENT ----
 function confirmPayment() {
   if (!selectedMethod) {
     showNotif('Please select a payment method first.', 'warn');
     return;
   }
-  const txid = document.getElementById('txid').value.trim();
 
+  const txid = document.getElementById('txid').value.trim();
   const whatsapp = document.getElementById('whatsapp').value.trim();
   const email    = document.getElementById('email').value.trim();
   const location = document.getElementById('location').value.trim();
 
-  // Build order summary
   const now = new Date();
   const orderRef = 'GW-' + Math.random().toString(36).substr(2,8).toUpperCase();
+  const itemsHtml = currentOrderItems.map(item => `${escapeHtml(item.name)}${item.quantity > 1 ? ` × ${item.quantity}` : ''} (${money(item.price * item.quantity)})`).join('<br/>');
+  const txidDisplay = txid ? `${txid.substr(0,12)}...${txid.substr(-6)}` : 'Not provided';
   const orderHtml = `
     <strong>Order ID:</strong> ${orderRef}<br/>
-    <strong>Product:</strong> ${currentProduct.name}<br/>
-    <strong>Amount:</strong> $${currentPrice.toFixed(2)} USD<br/>
+    <strong>Items:</strong><br/>${itemsHtml}<br/>
+    <strong>Subtotal:</strong> ${money(currentSubtotal)} USD<br/>
+    <strong>Discount:</strong> ${currentDiscount > 0 ? `${currentDiscountCode} −${money(currentDiscount)}` : 'None'}<br/>
+    <strong>Total Paid:</strong> ${money(currentTotal)} USD<br/>
     <strong>Payment:</strong> ${selectedMethod}<br/>
-    <strong>TxID:</strong> ${txid ? `${txid.substr(0,12)}...${txid.substr(-6)}` : 'Not provided'}<br/>
-    <strong>WhatsApp:</strong> ${whatsapp}<br/>
-    <strong>Email:</strong> ${email}<br/>
-    <strong>Location:</strong> ${location}<br/>
+    <strong>TxID:</strong> ${txidDisplay}<br/>
+    <strong>WhatsApp:</strong> ${escapeHtml(whatsapp)}<br/>
+    <strong>Email:</strong> ${escapeHtml(email)}<br/>
+    <strong>Location:</strong> ${escapeHtml(location)}<br/>
     <strong>Time:</strong> ${now.toLocaleString()}
   `;
+
+  localStorage.setItem(FIRST_PURCHASE_KEY, '1');
+  if (currentDiscountCode === 'NEW20') {
+    localStorage.setItem(NEW20_USED_KEY, '1');
+  }
+
+  if (checkoutMode === 'cart') {
+    cartItems = [];
+    saveCart();
+    renderCart();
+  }
 
   document.getElementById('successOrder').innerHTML = orderHtml;
   showStep('step3');
 }
 
-// ---- COPY ADDRESS ----
 function copyAddr(event, addr) {
   event.stopPropagation();
   navigator.clipboard.writeText(addr).then(() => {
@@ -394,7 +672,6 @@ function copyAddr(event, addr) {
       btn.style.color = '';
     }, 2000);
   }).catch(() => {
-    // Fallback
     const el = document.createElement('textarea');
     el.value = addr;
     document.body.appendChild(el);
@@ -405,26 +682,22 @@ function copyAddr(event, addr) {
   });
 }
 
-// ---- CATEGORY FILTER ----
 function filterCat(cat) {
   document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+  if (event && event.target) {
+    event.target.closest('.cat-btn')?.classList.add('active');
+  }
 
   document.querySelectorAll('.section-block').forEach(section => {
     if (cat === 'all') {
       section.classList.remove('hidden');
     } else {
       const sectionCat = section.dataset.cat;
-      if (sectionCat === cat) {
-        section.classList.remove('hidden');
-      } else {
-        section.classList.add('hidden');
-      }
+      section.classList.toggle('hidden', sectionCat !== cat);
     }
   });
 }
 
-// ---- HELPERS ----
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -432,12 +705,11 @@ function isValidEmail(email) {
 function shakeModal() {
   const box = document.querySelector('.modal-box');
   box.style.animation = 'none';
-  box.offsetHeight; // reflow
+  box.offsetHeight;
   box.style.animation = 'shake 0.4s ease';
   setTimeout(() => { box.style.animation = ''; }, 400);
 }
 
-// ---- NOTIFICATION TOAST ----
 function showNotif(msg, type = 'info') {
   let notif = document.getElementById('gw-notif');
   if (!notif) {
@@ -459,7 +731,6 @@ function showNotif(msg, type = 'info') {
   notif._t = setTimeout(() => { notif.style.opacity = '0'; }, 3000);
 }
 
-// ---- ADD SHAKE KEYFRAME ----
 const shakeStyle = document.createElement('style');
 shakeStyle.textContent = `
 @keyframes shake {
@@ -471,15 +742,13 @@ shakeStyle.textContent = `
 }`;
 document.head.appendChild(shakeStyle);
 
-// ---- APPLY BRAND LOGOS ----
 applyOfficialLogos();
+loadCart();
 
-// ---- CLOSE ON OVERLAY CLICK ----
 document.getElementById('paymentModal').addEventListener('click', function(e) {
   if (e.target === this) closePayment();
 });
 
-// ---- SCROLL REVEAL ----
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -496,7 +765,6 @@ document.querySelectorAll('.gift-card').forEach((card, i) => {
   observer.observe(card);
 });
 
-// ---- CARD TILT EFFECT ----
 document.querySelectorAll('.gift-card').forEach(card => {
   const inner = card.querySelector('.card-face.card-front');
   card.addEventListener('mousemove', (e) => {
