@@ -874,6 +874,35 @@ body {
   line-height: 1.6;
   margin-bottom: 24px;
 }
+
+.footer-support {
+  display: inline-block;
+  color: var(--text2);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  padding: 12px 18px;
+  background: rgba(0,229,160,0.06);
+  border: 1px solid rgba(0,229,160,0.2);
+  border-radius: 12px;
+}
+.footer-support a,
+.confirm-note a,
+.support-inline a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+.footer-support a:hover,
+.confirm-note a:hover,
+.support-inline a:hover {
+  text-decoration: underline;
+}
+.support-inline {
+  display: inline-block;
+  color: var(--text2);
+}
+
 .footer-cats {
   display: flex;
   gap: 20px;
