@@ -49,7 +49,6 @@
   }
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -511,10 +510,6 @@
           <label>📍 Location / Country <span class="req">*</span></label>
           <input type="text" id="location" placeholder="e.g. United States, Dubai, UK..." />
         </div>
-        <div class="form-group">
-          <label>🔗 Transaction ID (TxID) <span class="req">*</span></label>
-          <input type="text" id="txid" placeholder="Enter your crypto transaction hash..." />
-        </div>
       </div>
       <button class="btn-next" onclick="goToPayment()">Continue to Payment →</button>
     </div>
@@ -580,7 +575,12 @@
         <div class="selected-addr-value" id="selectedAddr">-</div>
       </div>
 
-      <div class="confirm-note">⚠️ After sending, enter your TxID above and click Confirm Payment.</div>
+      <div class="confirm-note">⚠️ After sending crypto, paste your TxID below before clicking Confirm Payment.</div>
+      <div class="form-group txid-payment-field">
+        <label>🔗 Transaction ID / TxID <span class="req">*</span></label>
+        <input type="text" id="txid" placeholder="Paste your crypto transaction hash after sending payment..." />
+      </div>
+
       <div class="modal-footer-btns">
         <button class="btn-back" onclick="backToStep1()">← Back</button>
         <button class="btn-confirm" onclick="confirmPayment()">✅ Confirm Payment</button>

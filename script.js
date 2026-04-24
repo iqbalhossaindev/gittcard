@@ -5,7 +5,7 @@
 // ---- RATES ----
 const RATES = {
   USDT_PER_USD: 1 / 1.1,       // 1 USD = 1/1.1 USDT (since 1 USDT = 1.1 USD)
-  BTC_USDT: 12000,              // 1 BTC = 12000 USDT
+  BTC_USDT: 120000,             // 1 BTC = 120000 USDT
   ETH_USDT: 4500,               // 1 ETH = 4500 USDT
 };
 
@@ -21,6 +21,160 @@ let currentProduct = null;
 let currentPrice = 0;
 let selectedMethod = null;
 
+// ---- OFFICIAL BRAND LOGOS ----
+// Most logos are loaded from Simple Icons CDN using each brand's official icon slug.
+// Cards without a real brand keep a clean text badge fallback.
+const BRAND_LOGOS = {
+  'Amazon Gift Card': 'amazon',
+  'Walmart Gift Card': 'walmart',
+  'Target Gift Card': 'target',
+  'eBay Gift Card': 'ebay',
+  'Best Buy Gift Card': 'bestbuy',
+  'Nike Gift Card': 'nike',
+  'Adidas Gift Card': 'adidas',
+  'Shein Gift Card': 'shein',
+  'AliExpress Gift Card': 'aliexpress',
+  'Steam Gift Card': 'steam',
+  'PlayStation Gift Card': 'playstation',
+  'Xbox Gift Card': 'xbox',
+  'Nintendo eShop Gift Card': 'nintendo',
+  'Roblox Gift Card': 'roblox',
+  'Fortnite V-Bucks Gift Card': 'fortnite',
+  'Razer Gold Gift Card': 'razer',
+  'Google Play Gift Card': 'googleplay',
+  'Apple App Store & iTunes Gift Card': 'apple',
+  'Netflix Gift Card': 'netflix',
+  'Spotify Gift Card': 'spotify',
+  'Disney+ Gift Card': 'disneyplus',
+  'Hulu Gift Card': 'hulu',
+  'YouTube Premium Gift Card': 'youtube',
+  'Twitch Gift Card': 'twitch',
+  'Paramount+ Gift Card': 'paramountplus',
+  'Starbucks Gift Card': 'starbucks',
+  "McDonald's Gift Card": 'mcdonalds',
+  'Uber Eats Gift Card': 'ubereats',
+  'DoorDash Gift Card': 'doordash',
+  "Domino's Gift Card": 'dominos',
+  'Burger King Gift Card': 'burgerking',
+  'Subway Gift Card': 'subway',
+  'KFC Gift Card': 'kfc',
+  'Airbnb Gift Card': 'airbnb',
+  'Uber Gift Card': 'uber',
+  'Lyft Gift Card': 'lyft',
+  'Hotels.com Gift Card': 'hotelsdotcom',
+  'Expedia Gift Card': 'expedia',
+  'Booking.com Gift Card': 'bookingdotcom',
+  'AT&T Prepaid Card': 'atandt',
+  'T-Mobile Prepaid Card': 'tmobile',
+  'Verizon Prepaid Card': 'verizon',
+  'Vodafone Recharge Card': 'vodafone',
+  'Orange Recharge Card': 'orange',
+  'Etisalat Recharge Card': 'etisalat',
+};
+
+
+const BRAND_DOMAINS = {
+  'Amazon Gift Card': 'amazon.com',
+  'Walmart Gift Card': 'walmart.com',
+  'Target Gift Card': 'target.com',
+  'eBay Gift Card': 'ebay.com',
+  'Best Buy Gift Card': 'bestbuy.com',
+  'Nike Gift Card': 'nike.com',
+  'Adidas Gift Card': 'adidas.com',
+  'Shein Gift Card': 'shein.com',
+  'AliExpress Gift Card': 'aliexpress.com',
+  'Steam Gift Card': 'steampowered.com',
+  'PlayStation Gift Card': 'playstation.com',
+  'Xbox Gift Card': 'xbox.com',
+  'Nintendo eShop Gift Card': 'nintendo.com',
+  'Roblox Gift Card': 'roblox.com',
+  'Fortnite V-Bucks Gift Card': 'fortnite.com',
+  'Razer Gold Gift Card': 'razer.com',
+  'Google Play Gift Card': 'play.google.com',
+  'Apple App Store & iTunes Gift Card': 'apple.com',
+  'Netflix Gift Card': 'netflix.com',
+  'Spotify Gift Card': 'spotify.com',
+  'Disney+ Gift Card': 'disneyplus.com',
+  'Hulu Gift Card': 'hulu.com',
+  'YouTube Premium Gift Card': 'youtube.com',
+  'Twitch Gift Card': 'twitch.tv',
+  'Paramount+ Gift Card': 'paramountplus.com',
+  'Starbucks Gift Card': 'starbucks.com',
+  "McDonald's Gift Card": 'mcdonalds.com',
+  'Uber Eats Gift Card': 'ubereats.com',
+  'DoorDash Gift Card': 'doordash.com',
+  "Domino's Gift Card": 'dominos.com',
+  'Burger King Gift Card': 'bk.com',
+  'Subway Gift Card': 'subway.com',
+  'KFC Gift Card': 'kfc.com',
+  'Airbnb Gift Card': 'airbnb.com',
+  'Uber Gift Card': 'uber.com',
+  'Lyft Gift Card': 'lyft.com',
+  'Hotels.com Gift Card': 'hotels.com',
+  'Expedia Gift Card': 'expedia.com',
+  'Booking.com Gift Card': 'booking.com',
+  'AT&T Prepaid Card': 'att.com',
+  'T-Mobile Prepaid Card': 't-mobile.com',
+  'Verizon Prepaid Card': 'verizon.com',
+  'Vodafone Recharge Card': 'vodafone.com',
+  'Orange Recharge Card': 'orange.com',
+  'Etisalat Recharge Card': 'etisalat.ae',
+  'Du Recharge Card': 'du.ae',
+};
+
+function logoUrl(slug) {
+  return `https://cdn.simpleicons.org/${slug}`;
+}
+
+function domainLogoUrl(domain) {
+  return `https://logo.clearbit.com/${domain}`;
+}
+
+function makeLogoImage(productName, fallbackText = '') {
+  const slug = BRAND_LOGOS[productName];
+  const domain = BRAND_DOMAINS[productName];
+  if (!slug && !domain) return null;
+
+  const img = document.createElement('img');
+  img.className = 'brand-logo-img';
+  img.src = slug ? logoUrl(slug) : domainLogoUrl(domain);
+  img.alt = `${productName.replace(/ Gift Card| Prepaid Card| Recharge Card/g, '')} official logo`;
+  img.loading = 'lazy';
+  img.onerror = () => {
+    if (domain && !img.dataset.usedDomainFallback) {
+      img.dataset.usedDomainFallback = 'true';
+      img.src = domainLogoUrl(domain);
+      return;
+    }
+    const fallback = document.createElement('span');
+    fallback.className = 'brand-logo-fallback';
+    fallback.textContent = fallbackText || productName.charAt(0);
+    img.replaceWith(fallback);
+  };
+  return img;
+}
+
+function applyOfficialLogos() {
+  document.querySelectorAll('.gift-card').forEach(card => {
+    const productName = card.dataset.name;
+    const iconBox = card.querySelector('.card-brand-icon');
+    if (!iconBox) return;
+
+    const existingEmoji = iconBox.textContent.trim();
+    const img = makeLogoImage(productName, existingEmoji);
+    iconBox.textContent = '';
+
+    if (img) {
+      iconBox.classList.add('has-logo');
+      iconBox.appendChild(img);
+    } else {
+      iconBox.classList.add('logo-fallback-card');
+      iconBox.textContent = existingEmoji || productName.charAt(0);
+    }
+  });
+}
+
+
 // ---- UPDATE CARD PRICE from select ----
 function updateCardPrice(select) {
   const card = select.closest('.gift-card');
@@ -35,6 +189,7 @@ function openPayment(card) {
     color: card.dataset.color,
     color2: card.dataset.color2,
     emoji: card.dataset.emoji,
+    logoSlug: BRAND_LOGOS[card.dataset.name] || null,
   };
   currentPrice = currentProduct.price;
 
@@ -45,7 +200,17 @@ function openPayment(card) {
   // Preview card
   const previewCard = document.getElementById('previewCard');
   previewCard.style.background = `linear-gradient(135deg, ${currentProduct.color}, ${currentProduct.color2})`;
-  document.getElementById('previewEmoji').textContent = currentProduct.emoji;
+  const previewIcon = document.getElementById('previewEmoji');
+  previewIcon.textContent = '';
+  const previewLogo = makeLogoImage(currentProduct.name, currentProduct.emoji);
+  if (previewLogo) {
+    previewLogo.classList.add('preview-logo-img');
+    previewIcon.classList.add('has-logo');
+    previewIcon.appendChild(previewLogo);
+  } else {
+    previewIcon.classList.remove('has-logo');
+    previewIcon.textContent = currentProduct.emoji;
+  }
   document.getElementById('previewBrand').textContent = currentProduct.name.split(' ').slice(0, 2).join(' ').toUpperCase();
 
   // Calculate rates
@@ -97,11 +262,10 @@ function goToPayment() {
   const whatsapp = document.getElementById('whatsapp').value.trim();
   const email    = document.getElementById('email').value.trim();
   const location = document.getElementById('location').value.trim();
-  const txid     = document.getElementById('txid').value.trim();
 
-  if (!whatsapp || !email || !location || !txid) {
+  if (!whatsapp || !email || !location) {
     shakeModal();
-    showNotif('⚠️ Please fill in all fields before continuing.', 'warn');
+    showNotif('⚠️ Please fill in your contact details before continuing.', 'warn');
     return;
   }
   if (!isValidEmail(email)) {
@@ -255,7 +419,7 @@ function showNotif(msg, type = 'info') {
     notif.id = 'gw-notif';
     notif.style.cssText = `
       position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
-      padding:12px 24px; border-radius:50px; font-family:'DM Sans',sans-serif;
+      padding:12px 24px; border-radius:50px; font-family:var(--font-general);
       font-size:0.88rem; font-weight:600; z-index:9999; white-space:nowrap;
       box-shadow:0 8px 32px rgba(0,0,0,0.4); transition: opacity 0.3s;
     `;
@@ -280,6 +444,9 @@ shakeStyle.textContent = `
   80% { transform: translateX(5px); }
 }`;
 document.head.appendChild(shakeStyle);
+
+// ---- APPLY BRAND LOGOS ----
+applyOfficialLogos();
 
 // ---- CLOSE ON OVERLAY CLICK ----
 document.getElementById('paymentModal').addEventListener('click', function(e) {

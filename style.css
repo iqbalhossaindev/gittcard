@@ -2,8 +2,6 @@
    GIFT WALMART — STYLESHEET
    ============================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
-
 :root {
   --bg: #0A0A0F;
   --bg2: #12121A;
@@ -19,6 +17,7 @@
   --card-radius: 16px;
   --modal-radius: 20px;
   --glow: 0 0 30px rgba(0,229,160,0.15);
+  --font-general: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +25,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-general);
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -56,7 +55,7 @@ body {
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 800;
   font-size: 1.4rem;
   color: var(--text);
@@ -151,7 +150,7 @@ body {
   animation: fadeDown 0.6s ease both;
 }
 .hero-content h1 {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-size: clamp(2.8rem, 7vw, 5.5rem);
   font-weight: 800;
   line-height: 1.08;
@@ -180,7 +179,7 @@ body {
 }
 .stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .stat-num {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-size: 2rem;
   font-weight: 800;
   color: var(--accent);
@@ -190,7 +189,7 @@ body {
   display: inline-block;
   background: linear-gradient(135deg, var(--accent), #00B8FF);
   color: #000;
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 700;
   font-size: 1rem;
   padding: 16px 40px;
@@ -223,7 +222,7 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text2);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-general);
   font-size: 0.85rem;
   font-weight: 500;
   padding: 10px 20px;
@@ -256,7 +255,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 24px;
@@ -336,9 +335,37 @@ body {
   100% { background-position: 200% 0; }
 }
 
-.card-brand-icon { font-size: 1.8rem; line-height: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+.card-brand-icon {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+  font-size: 1.55rem;
+  line-height: 1;
+  overflow: hidden;
+}
+.card-brand-icon.logo-fallback-card {
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: none;
+}
+.brand-logo-img {
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+  display: block;
+}
+.brand-logo-fallback {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #111;
+}
 .card-brand {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 800;
   font-size: 0.85rem;
   color: rgba(255,255,255,0.95);
@@ -391,7 +418,7 @@ body {
   padding: 14px 16px 16px;
 }
 .card-title {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 700;
   font-size: 0.9rem;
   color: var(--text);
@@ -415,7 +442,7 @@ body {
   background: var(--bg3);
   border: 1px solid var(--border);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-general);
   font-size: 0.85rem;
   font-weight: 600;
   padding: 7px 10px;
@@ -429,7 +456,7 @@ body {
   background: var(--accent);
   color: #000;
   border: none;
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 700;
   font-size: 0.78rem;
   padding: 8px 14px;
@@ -525,9 +552,24 @@ body {
   inset: 0;
   background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
 }
-.preview-emoji { font-size: 1.2rem; }
+.preview-emoji {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: rgba(255,255,255,0.92);
+  font-size: 1.05rem;
+  overflow: hidden;
+}
+.preview-logo-img {
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+}
 .preview-brand {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 800;
   font-size: 0.65rem;
   color: rgba(255,255,255,0.9);
@@ -540,14 +582,14 @@ body {
   letter-spacing: 0.12em;
 }
 .modal-product-name {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--text);
   margin-bottom: 4px;
 }
 .modal-amount-display {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-size: 1.8rem;
   font-weight: 800;
   color: var(--accent);
@@ -576,7 +618,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 10px;
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-general);
   font-size: 0.9rem;
   padding: 12px 14px;
   outline: none;
@@ -616,7 +658,7 @@ body {
   letter-spacing: 0.1em;
 }
 .rate-val {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 700;
   font-size: 0.92rem;
   color: var(--accent);
@@ -644,7 +686,7 @@ body {
 .pay-info { flex: 1; min-width: 0; }
 .pay-name { font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 3px; }
 .pay-addr {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-general);
   font-size: 0.68rem;
   color: var(--text3);
   overflow: hidden;
@@ -675,7 +717,7 @@ body {
 }
 .selected-label { font-size: 0.78rem; color: var(--text2); margin-bottom: 4px; }
 .selected-amount-crypto {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--accent);
@@ -695,7 +737,7 @@ body {
 .confirm-note {
   font-size: 0.78rem;
   color: var(--text3);
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   padding: 10px 14px;
   background: rgba(255,107,53,0.08);
   border: 1px solid rgba(255,107,53,0.2);
@@ -703,13 +745,16 @@ body {
 }
 
 /* ---- MODAL BUTTONS ---- */
+.txid-payment-field {
+  margin-bottom: 18px;
+}
 .modal-footer-btns { display: flex; gap: 12px; }
 .btn-next {
   width: 100%;
   background: linear-gradient(135deg, var(--accent), #00B8FF);
   border: none;
   color: #000;
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 700;
   font-size: 0.95rem;
   padding: 14px;
@@ -722,7 +767,7 @@ body {
   background: var(--bg3);
   border: 1px solid var(--border);
   color: var(--text2);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-general);
   font-weight: 600;
   font-size: 0.9rem;
   padding: 14px 20px;
@@ -736,7 +781,7 @@ body {
   background: linear-gradient(135deg, #FFD700, #FF8C00);
   border: none;
   color: #000;
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 700;
   font-size: 0.95rem;
   padding: 14px;
@@ -759,7 +804,7 @@ body {
   100% { transform: scale(1); opacity: 1; }
 }
 .success-title {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-size: 1.5rem;
   font-weight: 800;
   text-align: center;
@@ -788,7 +833,7 @@ body {
   background: var(--accent);
   border: none;
   color: #000;
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 700;
   font-size: 0.95rem;
   padding: 14px;
@@ -817,7 +862,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-general);
   font-weight: 800;
   font-size: 1.3rem;
   color: var(--text);
