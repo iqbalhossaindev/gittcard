@@ -1,224 +1,623 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GiftCard Hub | Digital Gift Cards, Gaming Cards & Crypto-Friendly Checkout</title>
-  <meta name="description" content="GiftCard Hub helps customers browse digital shopping, gaming, streaming, food, travel, mobile recharge, and universal gift cards with crypto-friendly payment instructions." />
-  <meta name="keywords" content="GiftCard Hub, gift cards, Amazon Gift Card, Steam Gift Card, Netflix Gift Card, crypto gift cards, digital gift cards" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gift Walmart – Buy Gift Cards Online | Instant Digital Delivery</title>
+  <meta name="description" content="Gift Walmart is your #1 source for digital gift cards. Shop Amazon, PlayStation, Netflix, Starbucks, Steam, Uber and 60+ more brands. Instant delivery, secure crypto payment." />
+  <meta name="keywords" content="gift cards, digital gift cards, buy gift cards online, amazon gift card, steam gift card, netflix gift card, crypto gift cards, gift walmart, walmart gift cards, gaming gift cards, shopping gift cards" />
+  <meta name="author" content="Gift Walmart" />
   <meta name="robots" content="index, follow" />
-  <meta name="author" content="GiftCard Hub" />
-  <link rel="canonical" href="https://example.com/" />
+  <link rel="canonical" href="https://giftwallmart.com/" />
 
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="GiftCard Hub | Digital Gift Cards" />
-  <meta property="og:description" content="Browse digital gift cards by category and calculate crypto payment amounts instantly." />
-  <meta property="og:image" content="assets/gift-card-icon.svg" />
-  <meta property="og:url" content="https://example.com/" />
+  <meta property="og:title" content="Gift Walmart – Buy Gift Cards Online | Instant Digital Delivery" />
+  <meta property="og:description" content="Shop 60+ top brand gift cards. Instant delivery. Crypto accepted. Amazon, PlayStation, Netflix, Starbucks & more." />
+  <meta property="og:url" content="https://giftwallmart.com/" />
+  <meta property="og:site_name" content="Gift Walmart" />
+  <meta property="og:image" content="https://giftwallmart.com/og-image.jpg" />
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="GiftCard Hub | Digital Gift Cards" />
-  <meta name="twitter:description" content="Digital gift cards with crypto-friendly payment instructions and confirmation form." />
+  <meta name="twitter:title" content="Gift Walmart – Buy Gift Cards Online" />
+  <meta name="twitter:description" content="Shop 60+ top brand gift cards. Crypto accepted. Instant delivery." />
+  <meta name="twitter:image" content="https://giftwallmart.com/og-image.jpg" />
 
-  <link rel="icon" href="assets/gift-card-icon.svg" type="image/svg+xml" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="assets/styles.css" />
-
-  <script type="application/ld+json" id="structuredData">
+  <!-- Structured Data -->
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "GiftCard Hub",
-    "url": "https://example.com/",
-    "description": "Digital gift card catalog with crypto-friendly checkout instructions.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://example.com/?search={search_term_string}",
-      "query-input": "required name=search_term_string"
+    "@type": "Store",
+    "name": "Gift Walmart",
+    "description": "Online marketplace for digital gift cards from 60+ top brands",
+    "url": "https://giftwallmart.com",
+    "logo": "https://giftwallmart.com/logo.png",
+    "acceptsReservations": false,
+    "paymentAccepted": "Cryptocurrency, USDT, Bitcoin, Ethereum",
+    "currenciesAccepted": "USD",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Digital Gift Cards",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Amazon Gift Card"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Steam Gift Card"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Netflix Gift Card"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "PlayStation Gift Card"}}
+      ]
     }
   }
   </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header" id="top">
-    <nav class="nav shell" aria-label="Main navigation">
-      <a class="brand" href="#top" aria-label="GiftCard Hub home">
-        <img src="assets/gift-card-icon.svg" alt="Animated gift card icon" class="brand-icon" />
-        <span>GiftCard Hub</span>
-      </a>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-      <div class="nav-links" data-nav-links>
-        <a href="#products">Products</a>
-        <a href="#calculator">Calculator</a>
-        <a href="#payment">Payment</a>
-        <a href="#confirm">Confirm Payment</a>
-      </div>
+
+<!-- ========== HEADER ========== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <span class="logo-icon">🎁</span>
+      <span class="logo-text">Gift<span class="logo-accent">Walmart</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#shopping">Shopping</a>
+      <a href="#gaming">Gaming</a>
+      <a href="#entertainment">Streaming</a>
+      <a href="#food">Food</a>
+      <a href="#travel">Travel</a>
+      <a href="#mobile">Mobile</a>
     </nav>
-  </header>
+    <div class="header-badge">⚡ Crypto Accepted</div>
+  </div>
+</header>
 
-  <main>
-    <section class="hero shell">
-      <div class="hero-copy">
-        <p class="eyebrow">Crypto-friendly digital gift cards</p>
-        <h1>GiftCard Hub</h1>
-        <p class="hero-text">Browse shopping, gaming, entertainment, food, travel, mobile recharge, and universal gift cards. Select a card, calculate payment, transfer crypto, then confirm your payment details.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#products">Browse Gift Cards</a>
-          <a class="btn btn-secondary" href="#calculator">Calculate Crypto Amount</a>
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="floating-cards">
+    <div class="fc fc1">🎮</div>
+    <div class="fc fc2">🛍️</div>
+    <div class="fc fc3">🎬</div>
+    <div class="fc fc4">🍔</div>
+    <div class="fc fc5">✈️</div>
+    <div class="fc fc6">📱</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">🌟 #1 Digital Gift Card Store</div>
+    <h1>The World's Best<br /><span class="hero-highlight">Gift Cards</span></h1>
+    <p>60+ top brands. Instant digital delivery. Pay with Crypto, USDT, BTC, or ETH. Gaming, Shopping, Streaming & more.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">60+</span><span class="stat-label">Brands</span></div>
+      <div class="stat"><span class="stat-num">⚡</span><span class="stat-label">Instant</span></div>
+      <div class="stat"><span class="stat-num">₿</span><span class="stat-label">Crypto OK</span></div>
+    </div>
+    <a href="#shopping" class="btn-hero">Browse All Gift Cards ↓</a>
+  </div>
+</section>
+
+<!-- ========== CATEGORIES NAV ========== -->
+<div class="cat-nav">
+  <button class="cat-btn active" onclick="filterCat('all')">🎁 All</button>
+  <button class="cat-btn" onclick="filterCat('shopping')">🛍️ Shopping</button>
+  <button class="cat-btn" onclick="filterCat('gaming')">🎮 Gaming</button>
+  <button class="cat-btn" onclick="filterCat('entertainment')">🎬 Streaming</button>
+  <button class="cat-btn" onclick="filterCat('food')">🍔 Food</button>
+  <button class="cat-btn" onclick="filterCat('travel')">✈️ Travel</button>
+  <button class="cat-btn" onclick="filterCat('mobile')">📱 Mobile</button>
+  <button class="cat-btn" onclick="filterCat('crypto')">💎 Universal</button>
+</div>
+
+<!-- ========== MAIN GRID ========== -->
+<main class="main-container">
+
+  <!-- SHOPPING -->
+  <section id="shopping" class="section-block" data-cat="shopping">
+    <div class="section-label"><span class="section-icon">🛍️</span> Shopping Gift Cards</div>
+    <div class="cards-grid">
+      <!-- Amazon -->
+      <div class="gift-card" data-cat="shopping" data-name="Amazon Gift Card" data-price="50" data-color="#FF9900" data-color2="#FF6600" data-emoji="📦">
+        <div class="card-inner">
+          <div class="card-face card-front" style="--c1:#FF9900;--c2:#FF6600">
+            <div class="card-shine"></div>
+            <div class="card-brand-icon">📦</div>
+            <div class="card-brand">amazon</div>
+            <div class="card-type">GIFT CARD</div>
+            <div class="card-chip"></div>
+          </div>
+          <div class="card-face card-back" style="--c1:#FF9900;--c2:#FF6600">
+            <div class="card-back-strip"></div>
+            <div class="card-back-text">Digital Gift Card</div>
+          </div>
         </div>
-        <p class="trust-note">Independent catalog demo. Brand names are used only to identify gift card products.</p>
-      </div>
-      <div class="hero-card" aria-label="Animated gift card visual">
-        <img src="assets/gift-card-icon.svg" alt="Animated digital gift card" class="hero-icon" />
-        <div class="hero-card-details">
-          <span class="status-dot"></span>
-          <span>Digital delivery after payment review</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="seo-panel shell" aria-labelledby="seo-title">
-      <div>
-        <p class="eyebrow">Auto SEO</p>
-        <h2 id="seo-title">Search-ready metadata updates with your selection</h2>
-        <p>When a customer selects a product, the page title, meta description, and preview content update automatically for that gift card category.</p>
-      </div>
-      <div class="seo-preview" aria-live="polite">
-        <strong id="seoPreviewTitle">GiftCard Hub | Digital Gift Cards</strong>
-        <span id="seoPreviewDescription">Choose any product to generate focused SEO copy.</span>
-      </div>
-    </section>
-
-    <section class="products shell" id="products">
-      <div class="section-heading">
-        <p class="eyebrow">Catalog</p>
-        <h2>Gift card products</h2>
-        <p>Search or filter by category, then choose a card for checkout.</p>
-      </div>
-      <div class="toolbar" role="search">
-        <input type="search" id="searchInput" placeholder="Search gift cards..." aria-label="Search gift cards" />
-        <select id="categoryFilter" aria-label="Filter by category">
-          <option value="all">All Categories</option>
-        </select>
-      </div>
-      <div id="productGrid" class="product-grid" aria-live="polite"></div>
-    </section>
-
-    <section class="calculator shell" id="calculator">
-      <div class="section-heading">
-        <p class="eyebrow">Payment calculator</p>
-        <h2>Calculate your crypto payment</h2>
-        <p>Rates are configured exactly as provided: 1 USDT = 1.1 USD, BTC = 12,000 USDT, ETH = 4,500 USDT.</p>
-      </div>
-      <div class="calc-card">
-        <label>
-          Selected Gift Card
-          <select id="selectedProduct"></select>
-        </label>
-        <label>
-          Gift Card Value in USD
-          <input type="number" min="1" step="1" value="50" id="usdAmount" />
-        </label>
-        <label>
-          Payment Method
-          <select id="paymentMethod">
-            <option value="USDT_BEP20">USDT - BEP20</option>
-            <option value="USDT_TRC20">USDT - TRC20</option>
-            <option value="BTC">BTC</option>
-            <option value="ETH_ERC20">ETH - ERC20</option>
-          </select>
-        </label>
-        <div class="calc-result">
-          <span>Amount to send</span>
-          <strong id="amountToSend">--</strong>
-          <small id="rateNote">Rate shown here</small>
-        </div>
-        <button class="btn btn-primary" id="copyWalletBtn" type="button">Copy Wallet Address</button>
-      </div>
-    </section>
-
-    <section class="payment shell" id="payment">
-      <div class="section-heading">
-        <p class="eyebrow">Crypto wallets</p>
-        <h2>Transfer crypto to the correct wallet</h2>
-        <p>Copy the matching address carefully before sending payment. Network selection matters.</p>
-      </div>
-      <div class="wallet-grid" id="walletGrid"></div>
-    </section>
-
-    <section class="confirm shell" id="confirm">
-      <div class="section-heading">
-        <p class="eyebrow">Confirm payment</p>
-        <h2>Submit payment confirmation</h2>
-        <p>After payment, fill out the first box below and click <strong>Payment Complete</strong>. Processing can take <strong>5–10 minutes</strong> and may take up to <strong>2 hours</strong>. Please check your email for updates.</p>
-      </div>
-      <form class="confirm-form" id="confirmForm">
-        <div class="form-box first-box">
-          <h3>First Box</h3>
-          <label>
-            WhatsApp Number
-            <input type="tel" name="whatsapp" placeholder="+971 50 000 0000" required />
-          </label>
-          <label>
-            TXID / Transaction Hash
-            <input type="text" name="txid" placeholder="Paste your blockchain transaction ID" required />
-          </label>
-          <label>
-            Location
-            <input type="text" name="location" placeholder="City, Country" required />
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" placeholder="you@example.com" required />
-          </label>
-        </div>
-
-        <div class="form-box">
-          <h3>Order Details</h3>
-          <label>
-            Product
-            <select name="product" id="confirmProduct"></select>
-          </label>
-          <label>
-            Payment Method
-            <select name="method" id="confirmMethod">
-              <option value="USDT - BEP20">USDT - BEP20</option>
-              <option value="USDT - TRC20">USDT - TRC20</option>
-              <option value="BTC">BTC</option>
-              <option value="ETH - ERC20">ETH - ERC20</option>
+        <div class="card-info">
+          <div class="card-title">Amazon Gift Card</div>
+          <div class="card-sub">Instant Digital Delivery</div>
+          <div class="card-price-row">
+            <select class="denom-select" onchange="updateCardPrice(this)">
+              <option value="25">$25</option>
+              <option value="50" selected>$50</option>
+              <option value="100">$100</option>
+              <option value="200">$200</option>
             </select>
-          </label>
-          <label>
-            Amount Sent
-            <input type="text" name="amountSent" id="confirmAmount" placeholder="Example: 45.45 USDT" required />
-          </label>
-          <label>
-            Notes
-            <textarea name="notes" rows="4" placeholder="Optional order notes"></textarea>
-          </label>
+            <button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button>
+          </div>
         </div>
-
-        <button class="btn btn-primary btn-wide" type="submit">Payment Complete</button>
-        <p class="form-message" id="formMessage" role="status"></p>
-      </form>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="shell footer-grid">
-      <div>
-        <a class="brand footer-brand" href="#top">
-          <img src="assets/gift-card-icon.svg" alt="GiftCard Hub icon" class="brand-icon" />
-          <span>GiftCard Hub</span>
-        </a>
-        <p>Digital gift cards with crypto-friendly checkout instructions.</p>
       </div>
-      <div>
-        <strong>Important</strong>
-        <p>This static website does not process payments automatically. Confirm all payments manually before delivery.</p>
+      <!-- Walmart -->
+      <div class="gift-card" data-cat="shopping" data-name="Walmart Gift Card" data-price="50" data-color="#0071CE" data-color2="#00AAFF" data-emoji="🛒">
+        <div class="card-inner">
+          <div class="card-face card-front" style="--c1:#0071CE;--c2:#00AAFF">
+            <div class="card-shine"></div>
+            <div class="card-brand-icon">🛒</div>
+            <div class="card-brand">walmart</div>
+            <div class="card-type">GIFT CARD</div>
+            <div class="card-chip"></div>
+          </div>
+          <div class="card-face card-back" style="--c1:#0071CE;--c2:#00AAFF">
+            <div class="card-back-strip"></div>
+            <div class="card-back-text">Digital Gift Card</div>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-title">Walmart Gift Card</div>
+          <div class="card-sub">Instant Digital Delivery</div>
+          <div class="card-price-row">
+            <select class="denom-select" onchange="updateCardPrice(this)">
+              <option value="25">$25</option>
+              <option value="50" selected>$50</option>
+              <option value="100">$100</option>
+            </select>
+            <button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- Target -->
+      <div class="gift-card" data-cat="shopping" data-name="Target Gift Card" data-price="50" data-color="#CC0000" data-color2="#FF3333" data-emoji="🎯">
+        <div class="card-inner">
+          <div class="card-face card-front" style="--c1:#CC0000;--c2:#FF3333">
+            <div class="card-shine"></div>
+            <div class="card-brand-icon">🎯</div>
+            <div class="card-brand">target</div>
+            <div class="card-type">GIFT CARD</div>
+            <div class="card-chip"></div>
+          </div>
+          <div class="card-face card-back" style="--c1:#CC0000;--c2:#FF3333"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div>
+        </div>
+        <div class="card-info">
+          <div class="card-title">Target Gift Card</div>
+          <div class="card-sub">Instant Digital Delivery</div>
+          <div class="card-price-row">
+            <select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select>
+            <button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- eBay -->
+      <div class="gift-card" data-cat="shopping" data-name="eBay Gift Card" data-price="50" data-color="#E53238" data-color2="#F5AF02" data-emoji="🏷️">
+        <div class="card-inner">
+          <div class="card-face card-front" style="--c1:#E53238;--c2:#F5AF02"><div class="card-shine"></div><div class="card-brand-icon">🏷️</div><div class="card-brand">eBay</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div>
+          <div class="card-face card-back" style="--c1:#E53238;--c2:#F5AF02"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div>
+        </div>
+        <div class="card-info"><div class="card-title">eBay Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <!-- Best Buy -->
+      <div class="gift-card" data-cat="shopping" data-name="Best Buy Gift Card" data-price="50" data-color="#003DA5" data-color2="#FFD100" data-emoji="📺">
+        <div class="card-inner">
+          <div class="card-face card-front" style="--c1:#003DA5;--c2:#FFD100"><div class="card-shine"></div><div class="card-brand-icon">📺</div><div class="card-brand">best buy</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div>
+          <div class="card-face card-back" style="--c1:#003DA5;--c2:#FFD100"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div>
+        </div>
+        <div class="card-info"><div class="card-title">Best Buy Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <!-- Nike -->
+      <div class="gift-card" data-cat="shopping" data-name="Nike Gift Card" data-price="50" data-color="#111111" data-color2="#444444" data-emoji="👟">
+        <div class="card-inner">
+          <div class="card-face card-front" style="--c1:#111111;--c2:#444444"><div class="card-shine"></div><div class="card-brand-icon">👟</div><div class="card-brand">NIKE</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div>
+          <div class="card-face card-back" style="--c1:#111111;--c2:#444444"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div>
+        </div>
+        <div class="card-info"><div class="card-title">Nike Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <!-- Adidas -->
+      <div class="gift-card" data-cat="shopping" data-name="Adidas Gift Card" data-price="50" data-color="#000000" data-color2="#FFFFFF" data-emoji="⚽">
+        <div class="card-inner">
+          <div class="card-face card-front" style="--c1:#222222;--c2:#555555"><div class="card-shine"></div><div class="card-brand-icon">⚽</div><div class="card-brand">adidas</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div>
+          <div class="card-face card-back" style="--c1:#222222;--c2:#555555"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div>
+        </div>
+        <div class="card-info"><div class="card-title">Adidas Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <!-- Shein -->
+      <div class="gift-card" data-cat="shopping" data-name="Shein Gift Card" data-price="25" data-color="#000000" data-color2="#FF4081" data-emoji="👗">
+        <div class="card-inner">
+          <div class="card-face card-front" style="--c1:#1a1a1a;--c2:#FF4081"><div class="card-shine"></div><div class="card-brand-icon">👗</div><div class="card-brand">SHEIN</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div>
+          <div class="card-face card-back" style="--c1:#1a1a1a;--c2:#FF4081"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div>
+        </div>
+        <div class="card-info"><div class="card-title">Shein Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25" selected>$25</option><option value="50">$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <!-- AliExpress -->
+      <div class="gift-card" data-cat="shopping" data-name="AliExpress Gift Card" data-price="50" data-color="#FF4B00" data-color2="#FF8C00" data-emoji="🌏">
+        <div class="card-inner">
+          <div class="card-face card-front" style="--c1:#FF4B00;--c2:#FF8C00"><div class="card-shine"></div><div class="card-brand-icon">🌏</div><div class="card-brand">AliExpress</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div>
+          <div class="card-face card-back" style="--c1:#FF4B00;--c2:#FF8C00"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div>
+        </div>
+        <div class="card-info"><div class="card-title">AliExpress Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <script src="assets/app.js"></script>
+  <!-- GAMING -->
+  <section id="gaming" class="section-block" data-cat="gaming">
+    <div class="section-label"><span class="section-icon">🎮</span> Gaming Gift Cards</div>
+    <div class="cards-grid">
+      <div class="gift-card" data-cat="gaming" data-name="Steam Gift Card" data-price="50" data-color="#1b2838" data-color2="#2a475e" data-emoji="🎮">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#1b2838;--c2:#66c0f4"><div class="card-shine"></div><div class="card-brand-icon">🎮</div><div class="card-brand">STEAM</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#1b2838;--c2:#66c0f4"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Steam Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="20">$20</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="gaming" data-name="PlayStation Gift Card" data-price="50" data-color="#003087" data-color2="#0070D1" data-emoji="🕹️">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#003087;--c2:#0070D1"><div class="card-shine"></div><div class="card-brand-icon">🕹️</div><div class="card-brand">PlayStation</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#003087;--c2:#0070D1"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">PlayStation Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="gaming" data-name="Xbox Gift Card" data-price="50" data-color="#107C10" data-color2="#52B043" data-emoji="🟩">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#107C10;--c2:#52B043"><div class="card-shine"></div><div class="card-brand-icon">🟩</div><div class="card-brand">XBOX</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#107C10;--c2:#52B043"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Xbox Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="gaming" data-name="Nintendo eShop Gift Card" data-price="25" data-color="#E4000F" data-color2="#FF4444" data-emoji="🍄">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#E4000F;--c2:#FF4444"><div class="card-shine"></div><div class="card-brand-icon">🍄</div><div class="card-brand">Nintendo</div><div class="card-type">eSHOP CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#E4000F;--c2:#FF4444"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Nintendo eShop Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="20">$20</option><option value="35" selected>$35</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="gaming" data-name="Roblox Gift Card" data-price="25" data-color="#E82012" data-color2="#FF6B35" data-emoji="🧱">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#E82012;--c2:#FF6B35"><div class="card-shine"></div><div class="card-brand-icon">🧱</div><div class="card-brand">ROBLOX</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#E82012;--c2:#FF6B35"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Roblox Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="gaming" data-name="Fortnite V-Bucks Gift Card" data-price="25" data-color="#1B1F8A" data-color2="#9B59B6" data-emoji="⚡">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#1B1F8A;--c2:#9B59B6"><div class="card-shine"></div><div class="card-brand-icon">⚡</div><div class="card-brand">FORTNITE</div><div class="card-type">V-BUCKS CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#1B1F8A;--c2:#9B59B6"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Fortnite V-Bucks Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="8">$8</option><option value="25" selected>$25</option><option value="40">$40</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="gaming" data-name="Razer Gold Gift Card" data-price="25" data-color="#00FF00" data-color2="#007700" data-emoji="💚">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#1a1a1a;--c2:#00FF00"><div class="card-shine"></div><div class="card-brand-icon">💚</div><div class="card-brand">RAZER GOLD</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#1a1a1a;--c2:#00FF00"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Razer Gold Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="gaming" data-name="Google Play Gift Card" data-price="25" data-color="#4285F4" data-color2="#34A853" data-emoji="▶️">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#4285F4;--c2:#34A853"><div class="card-shine"></div><div class="card-brand-icon">▶️</div><div class="card-brand">Google Play</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#4285F4;--c2:#34A853"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Google Play Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="15">$15</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="gaming" data-name="Apple App Store & iTunes Gift Card" data-price="50" data-color="#555555" data-color2="#AAAAAA" data-emoji="🍎">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#1c1c1c;--c2:#6e6e73"><div class="card-shine"></div><div class="card-brand-icon">🍎</div><div class="card-brand">App Store</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#1c1c1c;--c2:#6e6e73"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Apple App Store & iTunes</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTERTAINMENT -->
+  <section id="entertainment" class="section-block" data-cat="entertainment">
+    <div class="section-label"><span class="section-icon">🎬</span> Entertainment & Streaming Gift Cards</div>
+    <div class="cards-grid">
+      <div class="gift-card" data-cat="entertainment" data-name="Netflix Gift Card" data-price="25" data-color="#E50914" data-color2="#B20710" data-emoji="🎥">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#141414;--c2:#E50914"><div class="card-shine"></div><div class="card-brand-icon">🎥</div><div class="card-brand">NETFLIX</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#141414;--c2:#E50914"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Netflix Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="15">$15</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="entertainment" data-name="Spotify Gift Card" data-price="10" data-color="#1DB954" data-color2="#147A36" data-emoji="🎵">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#121212;--c2:#1DB954"><div class="card-shine"></div><div class="card-brand-icon">🎵</div><div class="card-brand">SPOTIFY</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#121212;--c2:#1DB954"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Spotify Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10" selected>$10</option><option value="30">$30</option><option value="60">$60</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="entertainment" data-name="Disney+ Gift Card" data-price="25" data-color="#0063E5" data-color2="#113CCF" data-emoji="✨">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#001F5C;--c2:#0063E5"><div class="card-shine"></div><div class="card-brand-icon">✨</div><div class="card-brand">Disney+</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#001F5C;--c2:#0063E5"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Disney+ Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="entertainment" data-name="Hulu Gift Card" data-price="25" data-color="#1CE783" data-color2="#0F9E5A" data-emoji="📺">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#040404;--c2:#1CE783"><div class="card-shine"></div><div class="card-brand-icon">📺</div><div class="card-brand">hulu</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#040404;--c2:#1CE783"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Hulu Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="entertainment" data-name="YouTube Premium Gift Card" data-price="15" data-color="#FF0000" data-color2="#CC0000" data-emoji="▶️">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#282828;--c2:#FF0000"><div class="card-shine"></div><div class="card-brand-icon">▶️</div><div class="card-brand">YouTube</div><div class="card-type">PREMIUM CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#282828;--c2:#FF0000"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">YouTube Premium Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="15" selected>$15</option><option value="30">$30</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="entertainment" data-name="Twitch Gift Card" data-price="25" data-color="#9146FF" data-color2="#6441A4" data-emoji="🟣">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#0e0e10;--c2:#9146FF"><div class="card-shine"></div><div class="card-brand-icon">🟣</div><div class="card-brand">twitch</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#0e0e10;--c2:#9146FF"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Twitch Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="entertainment" data-name="Paramount+ Gift Card" data-price="25" data-color="#0064FF" data-color2="#0033AA" data-emoji="⭐">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#0033AA;--c2:#0064FF"><div class="card-shine"></div><div class="card-brand-icon">⭐</div><div class="card-brand">Paramount+</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#0033AA;--c2:#0064FF"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Paramount+ Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOD -->
+  <section id="food" class="section-block" data-cat="food">
+    <div class="section-label"><span class="section-icon">🍔</span> Food & Restaurant Gift Cards</div>
+    <div class="cards-grid">
+      <div class="gift-card" data-cat="food" data-name="Starbucks Gift Card" data-price="25" data-color="#00704A" data-color2="#CBA258" data-emoji="☕">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#00704A;--c2:#CBA258"><div class="card-shine"></div><div class="card-brand-icon">☕</div><div class="card-brand">STARBUCKS</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#00704A;--c2:#CBA258"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Starbucks Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="food" data-name="McDonald's Gift Card" data-price="25" data-color="#DA291C" data-color2="#FFC72C" data-emoji="🍟">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#DA291C;--c2:#FFC72C"><div class="card-shine"></div><div class="card-brand-icon">🍟</div><div class="card-brand">McDonald's</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#DA291C;--c2:#FFC72C"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">McDonald's Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="food" data-name="Uber Eats Gift Card" data-price="25" data-color="#142328" data-color2="#06C167" data-emoji="🛵">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#142328;--c2:#06C167"><div class="card-shine"></div><div class="card-brand-icon">🛵</div><div class="card-brand">Uber Eats</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#142328;--c2:#06C167"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Uber Eats Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="15">$15</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="food" data-name="DoorDash Gift Card" data-price="25" data-color="#FF3008" data-color2="#FF6B4A" data-emoji="🚪">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#3D0C00;--c2:#FF3008"><div class="card-shine"></div><div class="card-brand-icon">🚪</div><div class="card-brand">DoorDash</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#3D0C00;--c2:#FF3008"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">DoorDash Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="15">$15</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="food" data-name="Domino's Gift Card" data-price="25" data-color="#006491" data-color2="#E31837" data-emoji="🍕">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#006491;--c2:#E31837"><div class="card-shine"></div><div class="card-brand-icon">🍕</div><div class="card-brand">DOMINO'S</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#006491;--c2:#E31837"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Domino's Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="food" data-name="Burger King Gift Card" data-price="25" data-color="#FF8200" data-color2="#502314" data-emoji="🍔">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#502314;--c2:#FF8200"><div class="card-shine"></div><div class="card-brand-icon">🍔</div><div class="card-brand">BURGER KING</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#502314;--c2:#FF8200"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Burger King Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="food" data-name="Subway Gift Card" data-price="25" data-color="#009245" data-color2="#FFCC00" data-emoji="🥖">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#009245;--c2:#FFCC00"><div class="card-shine"></div><div class="card-brand-icon">🥖</div><div class="card-brand">SUBWAY</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#009245;--c2:#FFCC00"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Subway Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="food" data-name="KFC Gift Card" data-price="25" data-color="#F40027" data-color2="#F4A700" data-emoji="🍗">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#8B0000;--c2:#F40027"><div class="card-shine"></div><div class="card-brand-icon">🍗</div><div class="card-brand">KFC</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#8B0000;--c2:#F40027"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">KFC Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAVEL -->
+  <section id="travel" class="section-block" data-cat="travel">
+    <div class="section-label"><span class="section-icon">✈️</span> Travel & Transport Gift Cards</div>
+    <div class="cards-grid">
+      <div class="gift-card" data-cat="travel" data-name="Airbnb Gift Card" data-price="100" data-color="#FF5A5F" data-color2="#FF385C" data-emoji="🏠">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#FF5A5F;--c2:#FF385C"><div class="card-shine"></div><div class="card-brand-icon">🏠</div><div class="card-brand">airbnb</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#FF5A5F;--c2:#FF385C"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Airbnb Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="50">$50</option><option value="100" selected>$100</option><option value="200">$200</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="travel" data-name="Uber Gift Card" data-price="50" data-color="#000000" data-color2="#333333" data-emoji="🚗">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#000000;--c2:#333333"><div class="card-shine"></div><div class="card-brand-icon">🚗</div><div class="card-brand">UBER</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#000000;--c2:#333333"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Uber Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="travel" data-name="Lyft Gift Card" data-price="50" data-color="#FF00BF" data-color2="#EA0099" data-emoji="🛻">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#1a0033;--c2:#FF00BF"><div class="card-shine"></div><div class="card-brand-icon">🛻</div><div class="card-brand">LYFT</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#1a0033;--c2:#FF00BF"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Lyft Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="travel" data-name="Hotels.com Gift Card" data-price="100" data-color="#E4191C" data-color2="#FF5252" data-emoji="🏨">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#8B0000;--c2:#E4191C"><div class="card-shine"></div><div class="card-brand-icon">🏨</div><div class="card-brand">hotels.com</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#8B0000;--c2:#E4191C"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Hotels.com Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="50">$50</option><option value="100" selected>$100</option><option value="250">$250</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="travel" data-name="Expedia Gift Card" data-price="100" data-color="#003580" data-color2="#FFCC00" data-emoji="🌍">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#003580;--c2:#FFCC00"><div class="card-shine"></div><div class="card-brand-icon">🌍</div><div class="card-brand">expedia</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#003580;--c2:#FFCC00"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Expedia Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="50">$50</option><option value="100" selected>$100</option><option value="250">$250</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="travel" data-name="Booking.com Gift Card" data-price="100" data-color="#003580" data-color2="#0078FF" data-emoji="🌐">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#003580;--c2:#0078FF"><div class="card-shine"></div><div class="card-brand-icon">🌐</div><div class="card-brand">Booking.com</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#003580;--c2:#0078FF"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Booking.com Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="50">$50</option><option value="100" selected>$100</option><option value="200">$200</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="travel" data-name="Flight Gift Card" data-price="200" data-color="#001DFF" data-color2="#00C3FF" data-emoji="✈️">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#00148C;--c2:#00C3FF"><div class="card-shine"></div><div class="card-brand-icon">✈️</div><div class="card-brand">FLIGHT</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#00148C;--c2:#00C3FF"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Flight Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="100">$100</option><option value="200" selected>$200</option><option value="500">$500</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="travel" data-name="Travel Experience Gift Card" data-price="100" data-color="#FF6B35" data-color2="#FFD700" data-emoji="🗺️">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#8B2500;--c2:#FF6B35"><div class="card-shine"></div><div class="card-brand-icon">🗺️</div><div class="card-brand">TRAVEL XP</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#8B2500;--c2:#FF6B35"><div class="card-back-strip"></div><div class="card-back-text">Digital Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Travel Experience Gift Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="100" selected>$100</option><option value="250">$250</option><option value="500">$500</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOBILE -->
+  <section id="mobile" class="section-block" data-cat="mobile">
+    <div class="section-label"><span class="section-icon">📱</span> Mobile Recharge Gift Cards</div>
+    <div class="cards-grid">
+      <div class="gift-card" data-cat="mobile" data-name="AT&T Prepaid Card" data-price="30" data-color="#00A8E0" data-color2="#009FDB" data-emoji="📡">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#005073;--c2:#00A8E0"><div class="card-shine"></div><div class="card-brand-icon">📡</div><div class="card-brand">AT&T</div><div class="card-type">PREPAID CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#005073;--c2:#00A8E0"><div class="card-back-strip"></div><div class="card-back-text">Mobile Recharge Card</div></div></div>
+        <div class="card-info"><div class="card-title">AT&T Prepaid Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="30" selected>$30</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="mobile" data-name="T-Mobile Prepaid Card" data-price="30" data-color="#E20074" data-color2="#FF3399" data-emoji="📶">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#6B0033;--c2:#E20074"><div class="card-shine"></div><div class="card-brand-icon">📶</div><div class="card-brand">T-Mobile</div><div class="card-type">PREPAID CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#6B0033;--c2:#E20074"><div class="card-back-strip"></div><div class="card-back-text">Mobile Recharge Card</div></div></div>
+        <div class="card-info"><div class="card-title">T-Mobile Prepaid Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="30" selected>$30</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="mobile" data-name="Verizon Prepaid Card" data-price="30" data-color="#CD040B" data-color2="#FF1A1A" data-emoji="📲">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#6B0005;--c2:#CD040B"><div class="card-shine"></div><div class="card-brand-icon">📲</div><div class="card-brand">VERIZON</div><div class="card-type">PREPAID CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#6B0005;--c2:#CD040B"><div class="card-back-strip"></div><div class="card-back-text">Mobile Recharge Card</div></div></div>
+        <div class="card-info"><div class="card-title">Verizon Prepaid Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="30" selected>$30</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="mobile" data-name="Vodafone Recharge Card" data-price="20" data-color="#E60000" data-color2="#FF4444" data-emoji="🌐">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#7A0000;--c2:#E60000"><div class="card-shine"></div><div class="card-brand-icon">🌐</div><div class="card-brand">VODAFONE</div><div class="card-type">RECHARGE CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#7A0000;--c2:#E60000"><div class="card-back-strip"></div><div class="card-back-text">Mobile Recharge Card</div></div></div>
+        <div class="card-info"><div class="card-title">Vodafone Recharge Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="20" selected>$20</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="mobile" data-name="Orange Recharge Card" data-price="20" data-color="#FF6600" data-color2="#FF9900" data-emoji="🟠">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#7A3100;--c2:#FF6600"><div class="card-shine"></div><div class="card-brand-icon">🟠</div><div class="card-brand">Orange</div><div class="card-type">RECHARGE CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#7A3100;--c2:#FF6600"><div class="card-back-strip"></div><div class="card-back-text">Mobile Recharge Card</div></div></div>
+        <div class="card-info"><div class="card-title">Orange Recharge Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="20" selected>$20</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="mobile" data-name="Etisalat Recharge Card" data-price="20" data-color="#00A54F" data-color2="#00D468" data-emoji="📳">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#004D25;--c2:#00A54F"><div class="card-shine"></div><div class="card-brand-icon">📳</div><div class="card-brand">Etisalat</div><div class="card-type">RECHARGE CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#004D25;--c2:#00A54F"><div class="card-back-strip"></div><div class="card-back-text">Mobile Recharge Card</div></div></div>
+        <div class="card-info"><div class="card-title">Etisalat Recharge Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="20" selected>$20</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="mobile" data-name="Du Recharge Card" data-price="20" data-color="#E4007C" data-color2="#FF69B4" data-emoji="📱">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#7A003D;--c2:#E4007C"><div class="card-shine"></div><div class="card-brand-icon">📱</div><div class="card-brand">du</div><div class="card-type">RECHARGE CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#7A003D;--c2:#E4007C"><div class="card-back-strip"></div><div class="card-back-text">Mobile Recharge Card</div></div></div>
+        <div class="card-info"><div class="card-title">Du Recharge Card</div><div class="card-sub">Instant Digital Delivery</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="20" selected>$20</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRYPTO / UNIVERSAL -->
+  <section id="crypto" class="section-block" data-cat="crypto">
+    <div class="section-label"><span class="section-icon">💎</span> Crypto-Friendly Universal Gift Cards</div>
+    <div class="cards-grid">
+      <div class="gift-card" data-cat="crypto" data-name="Universal Shopping Gift Card" data-price="50" data-color="#FFD700" data-color2="#FFA500" data-emoji="🛍️">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#7B4800;--c2:#FFD700"><div class="card-shine"></div><div class="card-brand-icon">🛍️</div><div class="card-brand">UNIVERSAL</div><div class="card-type">SHOPPING CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#7B4800;--c2:#FFD700"><div class="card-back-strip"></div><div class="card-back-text">Universal Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Universal Shopping Gift Card</div><div class="card-sub">Use Anywhere Online</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="crypto" data-name="Universal Gaming Gift Card" data-price="50" data-color="#00FFAA" data-color2="#007755" data-emoji="🎮">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#003322;--c2:#00FFAA"><div class="card-shine"></div><div class="card-brand-icon">🎮</div><div class="card-brand">UNI GAMING</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#003322;--c2:#00FFAA"><div class="card-back-strip"></div><div class="card-back-text">Universal Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Universal Gaming Gift Card</div><div class="card-sub">Use Anywhere Online</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="crypto" data-name="Universal Food Gift Card" data-price="25" data-color="#FF6B35" data-color2="#FF9F1C" data-emoji="🍽️">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#7A2A00;--c2:#FF6B35"><div class="card-shine"></div><div class="card-brand-icon">🍽️</div><div class="card-brand">UNI FOOD</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#7A2A00;--c2:#FF6B35"><div class="card-back-strip"></div><div class="card-back-text">Universal Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Universal Food Gift Card</div><div class="card-sub">Use Anywhere Online</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25" selected>$25</option><option value="50">$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="crypto" data-name="Universal Travel Gift Card" data-price="100" data-color="#00B4D8" data-color2="#023E8A" data-emoji="🌏">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#023E8A;--c2:#00B4D8"><div class="card-shine"></div><div class="card-brand-icon">🌏</div><div class="card-brand">UNI TRAVEL</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#023E8A;--c2:#00B4D8"><div class="card-back-strip"></div><div class="card-back-text">Universal Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Universal Travel Gift Card</div><div class="card-sub">Use Anywhere Online</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="50">$50</option><option value="100" selected>$100</option><option value="250">$250</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="crypto" data-name="Custom Digital Gift Card" data-price="50" data-color="#8B5CF6" data-color2="#D946EF" data-emoji="💜">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#3B0764;--c2:#8B5CF6"><div class="card-shine"></div><div class="card-brand-icon">💜</div><div class="card-brand">CUSTOM</div><div class="card-type">DIGITAL CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#3B0764;--c2:#8B5CF6"><div class="card-back-strip"></div><div class="card-back-text">Custom Digital Card</div></div></div>
+        <div class="card-info"><div class="card-title">Custom Digital Gift Card</div><div class="card-sub">Any Amount, Any Brand</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="crypto" data-name="Corporate Reward Gift Card" data-price="100" data-color="#0F4C81" data-color2="#1A73E8" data-emoji="🏆">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#0A2540;--c2:#1A73E8"><div class="card-shine"></div><div class="card-brand-icon">🏆</div><div class="card-brand">CORPORATE</div><div class="card-type">REWARD CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#0A2540;--c2:#1A73E8"><div class="card-back-strip"></div><div class="card-back-text">Corporate Reward Card</div></div></div>
+        <div class="card-info"><div class="card-title">Corporate Reward Gift Card</div><div class="card-sub">Bulk Orders Available</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="50">$50</option><option value="100" selected>$100</option><option value="500">$500</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="crypto" data-name="Birthday Gift Card" data-price="25" data-color="#FF6B9D" data-color2="#FFB347" data-emoji="🎂">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#7A1A3D;--c2:#FF6B9D"><div class="card-shine"></div><div class="card-brand-icon">🎂</div><div class="card-brand">BIRTHDAY</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#7A1A3D;--c2:#FF6B9D"><div class="card-back-strip"></div><div class="card-back-text">Birthday Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Birthday Gift Card</div><div class="card-sub">Send a Special Gift</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="10">$10</option><option value="25" selected>$25</option><option value="50">$50</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+      <div class="gift-card" data-cat="crypto" data-name="Holiday Gift Card" data-price="50" data-color="#2D6A4F" data-color2="#D4AF37" data-emoji="🎄">
+        <div class="card-inner"><div class="card-face card-front" style="--c1:#1B4332;--c2:#D4AF37"><div class="card-shine"></div><div class="card-brand-icon">🎄</div><div class="card-brand">HOLIDAY</div><div class="card-type">GIFT CARD</div><div class="card-chip"></div></div><div class="card-face card-back" style="--c1:#1B4332;--c2:#D4AF37"><div class="card-back-strip"></div><div class="card-back-text">Holiday Gift Card</div></div></div>
+        <div class="card-info"><div class="card-title">Holiday Gift Card</div><div class="card-sub">Season's Greetings</div><div class="card-price-row"><select class="denom-select" onchange="updateCardPrice(this)"><option value="25">$25</option><option value="50" selected>$50</option><option value="100">$100</option></select><button class="buy-btn" onclick="openPayment(this.closest('.gift-card'))">Buy Now</button></div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== PAYMENT MODAL ========== -->
+<div class="modal-overlay" id="paymentModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closePayment()">✕</button>
+    <div class="modal-header">
+      <div class="modal-card-preview" id="modalCardPreview">
+        <div class="preview-card" id="previewCard">
+          <div class="preview-emoji" id="previewEmoji">🎁</div>
+          <div class="preview-brand" id="previewBrand">BRAND</div>
+          <div class="preview-type">GIFT CARD</div>
+        </div>
+      </div>
+      <div class="modal-title-block">
+        <div class="modal-product-name" id="modalProductName">Gift Card</div>
+        <div class="modal-amount-display" id="modalAmountDisplay">$50.00 USD</div>
+      </div>
+    </div>
+
+    <!-- STEP 1: Contact Info -->
+    <div class="modal-section" id="step1">
+      <div class="step-badge">Step 1 of 2 — Your Details</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>📱 WhatsApp Number <span class="req">*</span></label>
+          <input type="tel" id="whatsapp" placeholder="+1 234 567 8900" />
+        </div>
+        <div class="form-group">
+          <label>📧 Email Address <span class="req">*</span></label>
+          <input type="email" id="email" placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label>📍 Location / Country <span class="req">*</span></label>
+          <input type="text" id="location" placeholder="e.g. United States, Dubai, UK..." />
+        </div>
+        <div class="form-group">
+          <label>🔗 Transaction ID (TxID) <span class="req">*</span></label>
+          <input type="text" id="txid" placeholder="Enter your crypto transaction hash..." />
+        </div>
+      </div>
+      <button class="btn-next" onclick="goToPayment()">Continue to Payment →</button>
+    </div>
+
+    <!-- STEP 2: Payment -->
+    <div class="modal-section hidden" id="step2">
+      <div class="step-badge">Step 2 of 2 — Choose Payment Method</div>
+
+      <!-- Rate Box -->
+      <div class="rate-box">
+        <div class="rate-title">💱 Live Crypto Rates</div>
+        <div class="rate-grid">
+          <div class="rate-item"><span class="rate-coin">USDT</span><span class="rate-val" id="rateUSDT">– USDT</span></div>
+          <div class="rate-item"><span class="rate-coin">ETH</span><span class="rate-val" id="rateETH">– ETH</span></div>
+          <div class="rate-item"><span class="rate-coin">BTC</span><span class="rate-val" id="rateBTC">– BTC</span></div>
+        </div>
+      </div>
+
+      <!-- Payment Options -->
+      <div class="payment-methods">
+        <!-- USDT BEP20 -->
+        <div class="pay-option" onclick="selectPayment(this, 'USDT-BEP20')">
+          <div class="pay-icon">💚</div>
+          <div class="pay-info">
+            <div class="pay-name">USDT (BEP20 – BSC)</div>
+            <div class="pay-addr" id="addrUSDTBEP">0x3d349c6139de28c972698a18684609ec02a2735d</div>
+          </div>
+          <button class="copy-btn" onclick="copyAddr(event,'0x3d349c6139de28c972698a18684609ec02a2735d')">Copy</button>
+        </div>
+        <!-- USDT TRC20 -->
+        <div class="pay-option" onclick="selectPayment(this, 'USDT-TRC20')">
+          <div class="pay-icon">🔴</div>
+          <div class="pay-info">
+            <div class="pay-name">USDT (TRC20 – TRON)</div>
+            <div class="pay-addr" id="addrUSDTTRC">TLLnDAaYyVTUjAk4uqKztdJ7Pg6oyc7VbR</div>
+          </div>
+          <button class="copy-btn" onclick="copyAddr(event,'TLLnDAaYyVTUjAk4uqKztdJ7Pg6oyc7VbR')">Copy</button>
+        </div>
+        <!-- ETH -->
+        <div class="pay-option" onclick="selectPayment(this, 'ETH')">
+          <div class="pay-icon">💎</div>
+          <div class="pay-info">
+            <div class="pay-name">ETH (ERC20)</div>
+            <div class="pay-addr" id="addrETH">0x3d349c6139de28c972698a18684609ec02a2735d</div>
+          </div>
+          <button class="copy-btn" onclick="copyAddr(event,'0x3d349c6139de28c972698a18684609ec02a2735d')">Copy</button>
+        </div>
+        <!-- BTC -->
+        <div class="pay-option" onclick="selectPayment(this, 'BTC')">
+          <div class="pay-icon">🟠</div>
+          <div class="pay-info">
+            <div class="pay-name">BTC (Bitcoin)</div>
+            <div class="pay-addr" id="addrBTC">1AdrCZ3wSA5x9NSX5LEty7VihmBrnzLY1t</div>
+          </div>
+          <button class="copy-btn" onclick="copyAddr(event,'1AdrCZ3wSA5x9NSX5LEty7VihmBrnzLY1t')">Copy</button>
+        </div>
+      </div>
+
+      <div class="selected-method" id="selectedMethodBox" style="display:none">
+        <div class="selected-label">Selected: <span id="selectedMethodName">-</span></div>
+        <div class="selected-amount-crypto" id="selectedAmountCrypto">-</div>
+        <div class="selected-addr-label">Send to:</div>
+        <div class="selected-addr-value" id="selectedAddr">-</div>
+      </div>
+
+      <div class="confirm-note">⚠️ After sending, enter your TxID above and click Confirm Payment.</div>
+      <div class="modal-footer-btns">
+        <button class="btn-back" onclick="backToStep1()">← Back</button>
+        <button class="btn-confirm" onclick="confirmPayment()">✅ Confirm Payment</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Success -->
+    <div class="modal-section hidden" id="step3">
+      <div class="success-anim">🎉</div>
+      <div class="success-title">Payment Submitted!</div>
+      <div class="success-msg">Thank you! Your order has been received.<br/>We'll verify your transaction and deliver your gift card to your WhatsApp and email within <strong>5–30 minutes</strong>.</div>
+      <div class="success-order" id="successOrder"></div>
+      <button class="btn-done" onclick="closePayment()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-icon">🎁</span>
+      <span class="logo-text">Gift<span class="logo-accent">Walmart</span></span>
+    </div>
+    <p class="footer-desc">The world's trusted digital gift card marketplace. 60+ top brands. Instant delivery. Crypto accepted.</p>
+    <div class="footer-cats">
+      <a href="#shopping">Shopping</a>
+      <a href="#gaming">Gaming</a>
+      <a href="#entertainment">Streaming</a>
+      <a href="#food">Food</a>
+      <a href="#travel">Travel</a>
+      <a href="#mobile">Mobile</a>
+    </div>
+    <p class="footer-copy">© 2025 GiftWalmart.com — All rights reserved. Digital gift cards for instant delivery worldwide.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
