@@ -1,0 +1,47 @@
+<svg width="640" height="480" viewBox="0 0 640 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Animated digital gift card icon</title>
+  <desc id="desc">A glossy animated gift card with ribbon, chip, and sparkles.</desc>
+  <style>
+    .card { animation: float 3.8s ease-in-out infinite; transform-origin: 320px 240px; }
+    .sparkle { animation: twinkle 1.8s ease-in-out infinite; transform-origin: center; }
+    .sparkle.s2 { animation-delay: .35s; }
+    .sparkle.s3 { animation-delay: .7s; }
+    .stripe { animation: shine 2.6s linear infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-16px) rotate(2deg); } }
+    @keyframes twinkle { 0%,100% { opacity: .32; transform: scale(.82); } 50% { opacity: 1; transform: scale(1.12); } }
+    @keyframes shine { 0% { transform: translateX(-360px); opacity: 0; } 20% { opacity: .5; } 100% { transform: translateX(540px); opacity: 0; } }
+  </style>
+  <defs>
+    <linearGradient id="bg" x1="78" y1="74" x2="560" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset=".48" stop-color="#00D4FF"/>
+      <stop offset="1" stop-color="#19E6A2"/>
+    </linearGradient>
+    <linearGradient id="ribbon" x1="159" y1="128" x2="469" y2="365" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD76B"/>
+      <stop offset="1" stop-color="#FF8A3D"/>
+    </linearGradient>
+    <filter id="shadow" x="40" y="48" width="560" height="394" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="26" stdDeviation="22" flood-color="#000" flood-opacity=".32"/>
+    </filter>
+    <clipPath id="clip"><rect x="96" y="104" width="448" height="272" rx="36"/></clipPath>
+  </defs>
+  <g class="sparkle s1"><path d="M92 84l12 25 25 12-25 12-12 25-12-25-25-12 25-12 12-25z" fill="#fff" opacity=".72"/></g>
+  <g class="sparkle s2"><path d="M556 98l8 17 17 8-17 8-8 17-8-17-17-8 17-8 8-17z" fill="#FFE082" opacity=".85"/></g>
+  <g class="sparkle s3"><path d="M545 346l11 22 22 11-22 11-11 22-11-22-22-11 22-11 11-22z" fill="#9AFBFF" opacity=".7"/></g>
+  <g class="card" filter="url(#shadow)">
+    <rect x="96" y="104" width="448" height="272" rx="36" fill="url(#bg)"/>
+    <g clip-path="url(#clip)">
+      <rect x="291" y="82" width="58" height="326" fill="url(#ribbon)" opacity=".96"/>
+      <rect x="79" y="211" width="482" height="58" fill="url(#ribbon)" opacity=".96"/>
+      <rect class="stripe" x="102" y="80" width="94" height="340" fill="white" opacity=".26" transform="rotate(18 149 250)"/>
+      <circle cx="320" cy="240" r="52" fill="#07111F" opacity=".2"/>
+      <path d="M320 196c-16-33-64-27-64 8 0 32 43 45 64 18 21 27 64 14 64-18 0-35-48-41-64-8z" stroke="white" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+      <rect x="136" y="304" width="138" height="28" rx="14" fill="#07111F" opacity=".25"/>
+      <rect x="136" y="318" width="206" height="14" rx="7" fill="#fff" opacity=".35"/>
+      <rect x="414" y="136" width="76" height="58" rx="14" fill="#fff" opacity=".38"/>
+      <path d="M430 165h44M452 143v44" stroke="#07111F" stroke-opacity=".26" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <rect x="96" y="104" width="448" height="272" rx="36" stroke="white" stroke-opacity=".34" stroke-width="3"/>
+  </g>
+</svg>
