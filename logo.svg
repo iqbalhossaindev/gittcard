@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="GiftWalmart logo">
+  <defs>
+    <linearGradient id="giftGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#00E5A0"/>
+      <stop offset="100%" stop-color="#00B8FF"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FF9A3D"/>
+      <stop offset="100%" stop-color="#FF5A36"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#0b0f18"/>
+  <path d="M24 52h80v50a10 10 0 0 1-10 10H34a10 10 0 0 1-10-10V52Z" fill="url(#boxGrad)"/>
+  <path d="M20 44a8 8 0 0 1 8-8h72a8 8 0 0 1 8 8v12H20V44Z" fill="#ffb545"/>
+  <path d="M61 20c8 0 14 5.5 14 13c0 10-12 16-12 16S49 43 49 33c0-7.5 6-13 12-13Zm6 13c0-3.2-2.6-6-6-6s-6 2.8-6 6c0 3.5 3.2 6.5 6 8.9c2.8-2.4 6-5.4 6-8.9Zm0-13c8 0 14 5.5 14 13c0 10-12 16-12 16s-14-6-14-16c0-7.5 6-13 12-13Zm6 13c0-3.2-2.6-6-6-6s-6 2.8-6 6c0 3.5 3.2 6.5 6 8.9c2.8-2.4 6-5.4 6-8.9Z" fill="#ff5f56" opacity=".96"/>
+  <rect x="58" y="36" width="12" height="76" rx="4" fill="url(#giftGrad)"/>
+  <rect x="24" y="52" width="80" height="12" fill="url(#giftGrad)"/>
+</svg>

@@ -130,27 +130,64 @@ function domainLogoUrl(domain) {
   return `https://logo.clearbit.com/${domain}`;
 }
 
+function googleFaviconUrl(domain) {
+  return `https://www.google.com/s2/favicons?sz=128&domain_url=https://${domain}`;
+}
+
+function cleanBrandName(productName) {
+  return productName
+    .replace(/ Gift Card| Prepaid Card| Recharge Card/gi, '')
+    .replace(/&/g, 'and')
+    .replace(/\+/g, ' Plus ')
+    .trim();
+}
+
+function makeMonogramSvg(label) {
+  const clean = label.replace(/[^A-Za-z0-9 ]/g, ' ').trim();
+  const chars = clean.split(/\s+/).filter(Boolean).slice(0, 2).map(part => part[0]).join('').toUpperCase() || 'GC';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#d7e8ff"/></linearGradient></defs><rect width="128" height="128" rx="28" fill="url(#g)"/><text x="64" y="78" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="46" text-anchor="middle" fill="#111111">${chars}</text></svg>`;
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
 function makeLogoImage(productName, fallbackText = '') {
   const slug = BRAND_LOGOS[productName];
   const domain = BRAND_DOMAINS[productName];
-  if (!slug && !domain) return null;
+  const label = cleanBrandName(productName || fallbackText || 'Gift Card');
 
   const img = document.createElement('img');
   img.className = 'brand-logo-img';
-  img.src = slug ? logoUrl(slug) : domainLogoUrl(domain);
-  img.alt = `${productName.replace(/ Gift Card| Prepaid Card| Recharge Card/g, '')} official logo`;
+  img.alt = `${label} brand icon`;
   img.loading = 'lazy';
-  img.onerror = () => {
-    if (domain && !img.dataset.usedDomainFallback) {
-      img.dataset.usedDomainFallback = 'true';
-      img.src = domainLogoUrl(domain);
-      return;
-    }
-    const fallback = document.createElement('span');
-    fallback.className = 'brand-logo-fallback';
-    fallback.textContent = fallbackText || productName.charAt(0);
-    img.replaceWith(fallback);
-  };
+
+  if (domain) {
+    img.src = googleFaviconUrl(domain);
+    img.onerror = () => {
+      if (domain && !img.dataset.usedClearbit) {
+        img.dataset.usedClearbit = 'true';
+        img.src = domainLogoUrl(domain);
+        return;
+      }
+      if (slug && !img.dataset.usedSimpleIcon) {
+        img.dataset.usedSimpleIcon = 'true';
+        img.src = logoUrl(slug);
+        return;
+      }
+      img.onerror = null;
+      img.src = makeMonogramSvg(label);
+    };
+    return img;
+  }
+
+  if (slug) {
+    img.src = logoUrl(slug);
+    img.onerror = () => {
+      img.onerror = null;
+      img.src = makeMonogramSvg(label);
+    };
+    return img;
+  }
+
+  img.src = makeMonogramSvg(label);
   return img;
 }
 
@@ -163,17 +200,10 @@ function applyOfficialLogos() {
     const existingEmoji = iconBox.textContent.trim();
     const img = makeLogoImage(productName, existingEmoji);
     iconBox.textContent = '';
-
-    if (img) {
-      iconBox.classList.add('has-logo');
-      iconBox.appendChild(img);
-    } else {
-      iconBox.classList.add('logo-fallback-card');
-      iconBox.textContent = existingEmoji || productName.charAt(0);
-    }
+    iconBox.classList.add('has-logo');
+    iconBox.appendChild(img);
   });
 }
-
 
 // ---- UPDATE CARD PRICE from select ----
 function updateCardPrice(select) {
@@ -209,7 +239,7 @@ function openPayment(card) {
     previewIcon.appendChild(previewLogo);
   } else {
     previewIcon.classList.remove('has-logo');
-    previewIcon.textContent = currentProduct.emoji;
+    previewIcon.innerHTML = '<svg class="ui-icon"><use href="#i-gift"></use></svg>';
   }
   document.getElementById('previewBrand').textContent = currentProduct.name.split(' ').slice(0, 2).join(' ').toUpperCase();
 
@@ -265,11 +295,11 @@ function goToPayment() {
 
   if (!whatsapp || !email || !location) {
     shakeModal();
-    showNotif('⚠️ Please fill in your contact details before continuing.', 'warn');
+    showNotif('Please fill in your contact details before continuing.', 'warn');
     return;
   }
   if (!isValidEmail(email)) {
-    showNotif('⚠️ Please enter a valid email address.', 'warn');
+    showNotif('Please enter a valid email address.', 'warn');
     return;
   }
 
@@ -321,14 +351,10 @@ function selectPayment(el, method) {
 // ---- CONFIRM PAYMENT ----
 function confirmPayment() {
   if (!selectedMethod) {
-    showNotif('⚠️ Please select a payment method first.', 'warn');
+    showNotif('Please select a payment method first.', 'warn');
     return;
   }
   const txid = document.getElementById('txid').value.trim();
-  if (!txid) {
-    showNotif('⚠️ Please enter your Transaction ID (TxID).', 'warn');
-    return;
-  }
 
   const whatsapp = document.getElementById('whatsapp').value.trim();
   const email    = document.getElementById('email').value.trim();
@@ -342,7 +368,7 @@ function confirmPayment() {
     <strong>Product:</strong> ${currentProduct.name}<br/>
     <strong>Amount:</strong> $${currentPrice.toFixed(2)} USD<br/>
     <strong>Payment:</strong> ${selectedMethod}<br/>
-    <strong>TxID:</strong> ${txid.substr(0,12)}...${txid.substr(-6)}<br/>
+    <strong>TxID:</strong> ${txid ? `${txid.substr(0,12)}...${txid.substr(-6)}` : 'Not provided'}<br/>
     <strong>WhatsApp:</strong> ${whatsapp}<br/>
     <strong>Email:</strong> ${email}<br/>
     <strong>Location:</strong> ${location}<br/>
@@ -359,7 +385,7 @@ function copyAddr(event, addr) {
   navigator.clipboard.writeText(addr).then(() => {
     const btn = event.target;
     const orig = btn.textContent;
-    btn.textContent = '✓ Copied';
+    btn.textContent = 'Copied';
     btn.style.background = 'var(--accent)';
     btn.style.color = '#000';
     setTimeout(() => {
@@ -375,7 +401,7 @@ function copyAddr(event, addr) {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    showNotif('✓ Address copied!', 'success');
+    showNotif('Address copied!', 'success');
   });
 }
 
@@ -488,4 +514,4 @@ document.querySelectorAll('.gift-card').forEach(card => {
   });
 });
 
-console.log('🎁 Gift Walmart — Loaded successfully.');
+console.log('GiftWalmart loaded successfully.');

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iqbalhossaindev.github.io/sitemap.xml
