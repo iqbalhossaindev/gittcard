@@ -573,7 +573,7 @@
           <input type="text" id="location" placeholder="e.g. United States, Dubai, UK..." />
         </div>
       </div>
-      <button class="btn-next" onclick="goToPayment()">Continue to Payment →</button>
+      <button type="button" class="btn-next" data-fast-action="payment">Continue to Payment →</button>
     </div>
 
     <!-- STEP 2: Payment -->
@@ -637,15 +637,15 @@
         <div class="selected-addr-value" id="selectedAddr">-</div>
       </div>
 
-      <div class="confirm-note">⚠️ After sending crypto, paste your TxID below before clicking Confirm Payment if available. Keep a screenshot of your payment. If delivery is delayed, email <a href="mailto:hello@giftwalmart.com">hello@giftwalmart.com</a> with the payment screenshot and TxID.</div>
+      <div class="confirm-note">⚠️ After sending crypto, paste your TxID below before clicking Confirm Payment. Keep a screenshot of your payment. If delivery is delayed, email <a href="mailto:hello@giftwalmart.com">hello@giftwalmart.com</a> with the payment screenshot and TxID.</div>
       <div class="form-group txid-payment-field">
-        <label>Transaction ID / TxID <span class="optional">(optional)</span></label>
-        <input type="text" id="txid" placeholder="Paste your crypto transaction hash after sending payment (optional)..." />
+        <label>Transaction ID / TxID <span class="req">*</span></label>
+        <input type="text" id="txid" placeholder="Paste your crypto transaction hash after sending payment..." required />
       </div>
 
       <div class="modal-footer-btns">
         <button class="btn-back" onclick="backToStep1()">← Back</button>
-        <button class="btn-confirm" onclick="confirmPayment()">Confirm Payment</button>
+        <button type="button" class="btn-confirm" data-fast-action="confirm">Confirm Payment</button>
       </div>
     </div>
 

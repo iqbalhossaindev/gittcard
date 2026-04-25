@@ -620,7 +620,13 @@ function confirmPayment() {
     return;
   }
 
-  const txid = document.getElementById('txid').value.trim();
+  const txidInput = document.getElementById('txid');
+  const txid = txidInput.value.trim();
+  if (!txid) {
+    showNotif('Please enter your Transaction ID / TxID before confirming payment.', 'warn');
+    txidInput.focus();
+    return;
+  }
   const whatsapp = document.getElementById('whatsapp').value.trim();
   const email    = document.getElementById('email').value.trim();
   const location = document.getElementById('location').value.trim();
@@ -628,7 +634,7 @@ function confirmPayment() {
   const now = new Date();
   const orderRef = 'GW-' + Math.random().toString(36).substr(2,8).toUpperCase();
   const itemsHtml = currentOrderItems.map(item => `${escapeHtml(item.name)}${item.quantity > 1 ? ` × ${item.quantity}` : ''} (${money(item.price * item.quantity)})`).join('<br/>');
-  const txidDisplay = txid ? `${txid.substr(0,12)}...${txid.substr(-6)}` : 'Not provided';
+  const txidDisplay = `${txid.substr(0,12)}...${txid.substr(-6)}`;
   const orderHtml = `
     <strong>Order ID:</strong> ${orderRef}<br/>
     <strong>Items:</strong><br/>${itemsHtml}<br/>
@@ -847,6 +853,36 @@ function clearProductSearch() {
   if (input) input.focus();
 }
 
+
+function bindFastTapButtons() {
+  const bindings = [
+    { selector: '[data-fast-action="payment"]', handler: goToPayment },
+    { selector: '[data-fast-action="confirm"]', handler: confirmPayment },
+  ];
+
+  bindings.forEach(({ selector, handler }) => {
+    document.querySelectorAll(selector).forEach(btn => {
+      if (btn.dataset.fastTapBound === '1') return;
+      btn.dataset.fastTapBound = '1';
+      let lastTap = 0;
+      const run = (event) => {
+        const now = Date.now();
+        if (now - lastTap < 350) return;
+        lastTap = now;
+        if (event && event.cancelable) event.preventDefault();
+        btn.blur();
+        handler();
+      };
+      btn.addEventListener('click', run);
+      btn.addEventListener('touchend', run, { passive: false });
+      btn.addEventListener('pointerup', (event) => {
+        if (event.pointerType === 'touch') run(event);
+      }, { passive: false });
+    });
+  });
+}
+
+bindFastTapButtons();
 console.log('GiftWalmart loaded successfully.');
 
 
