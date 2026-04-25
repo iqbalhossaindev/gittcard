@@ -753,38 +753,105 @@ document.querySelectorAll('.gift-card').forEach(card => {
   card.classList.add('card-ready');
 });
 
+function getProductCards() {
+  return Array.from(document.querySelectorAll('.gift-card'));
+}
+
+function productMatches(card, query) {
+  const name = (card.dataset.name || card.querySelector('.card-title')?.textContent || '').toLowerCase();
+  const category = (card.dataset.cat || '').toLowerCase();
+  return !query || name.includes(query) || category.includes(query);
+}
+
+function renderSearchResults(query, matches) {
+  const box = document.getElementById('searchResults');
+  if (!box) return;
+  box.innerHTML = '';
+
+  if (!query) {
+    box.hidden = true;
+    return;
+  }
+
+  if (matches.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'search-result-empty';
+    empty.textContent = 'No gift card found.';
+    box.appendChild(empty);
+    box.hidden = false;
+    return;
+  }
+
+  matches.slice(0, 8).forEach(card => {
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'search-result-item';
+    const title = card.dataset.name || card.querySelector('.card-title')?.textContent || 'Gift Card';
+    const cat = card.dataset.cat || 'gift card';
+    const price = card.dataset.price || card.querySelector('.denom-select')?.value || '';
+    item.innerHTML = `<span class="search-result-title">${title}</span><span class="search-result-meta">${cat}${price ? ` • $${price}` : ''}</span>`;
+    item.addEventListener('click', () => goToSearchResult(card));
+    box.appendChild(item);
+  });
+  box.hidden = false;
+}
+
+function goToSearchResult(card) {
+  if (!card) return;
+  document.querySelectorAll('.section-block, .gift-card').forEach(el => el.classList.remove('search-hidden'));
+  document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+  const allBtn = Array.from(document.querySelectorAll('.cat-btn')).find(btn => btn.textContent.toLowerCase().includes('all'));
+  if (allBtn) allBtn.classList.add('active');
+
+  const results = document.getElementById('searchResults');
+  if (results) results.hidden = true;
+
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  card.classList.add('search-focus-card');
+  setTimeout(() => card.classList.remove('search-focus-card'), 1800);
+}
+
 function searchProducts() {
   const input = document.getElementById('productSearch');
   const empty = document.getElementById('searchEmpty');
   if (!input) return;
+
   const query = input.value.trim().toLowerCase();
   let visibleCount = 0;
+  const matches = [];
 
   document.querySelectorAll('.section-block').forEach(section => {
     let sectionVisible = false;
     section.querySelectorAll('.gift-card').forEach(card => {
-      const name = (card.dataset.name || card.querySelector('.card-title')?.textContent || '').toLowerCase();
-      const category = (card.dataset.cat || '').toLowerCase();
-      const visible = !query || name.includes(query) || category.includes(query);
+      const visible = productMatches(card, query);
       card.classList.toggle('search-hidden', !visible);
       if (visible) {
         visibleCount += 1;
         sectionVisible = true;
+        if (query) matches.push(card);
       }
     });
     section.classList.toggle('search-hidden', !sectionVisible);
   });
 
   if (empty) empty.hidden = visibleCount !== 0;
+  renderSearchResults(query, matches);
 }
 
 function clearProductSearch() {
   const input = document.getElementById('productSearch');
-  if (input) {
-    input.value = '';
-    searchProducts();
-    input.focus();
-  }
+  const results = document.getElementById('searchResults');
+  if (input) input.value = '';
+  if (results) results.hidden = true;
+  searchProducts();
+  if (input) input.focus();
 }
 
 console.log('GiftWalmart loaded successfully.');
+
+
+document.addEventListener('click', function(e) {
+  const search = document.querySelector('.site-search');
+  const results = document.getElementById('searchResults');
+  if (search && results && !search.contains(e.target)) results.hidden = true;
+});

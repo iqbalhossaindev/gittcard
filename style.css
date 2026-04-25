@@ -1573,3 +1573,297 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* ==== V7 MOBILE, CHIP, CHECKOUT, SEARCH RESULT PATCH ==== */
+.card-chip {
+  width: 32px !important;
+  height: 24px !important;
+  background: url("card-chip.svg") center / contain no-repeat !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  display: block !important;
+  opacity: 0.96;
+}
+.card-title {
+  white-space: normal !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  min-height: 2.35em !important;
+  line-height: 1.16 !important;
+}
+.site-search {
+  position: relative;
+  overflow: visible;
+}
+.search-results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 2500;
+  background: rgba(18,18,26,0.98);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+  padding: 6px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+.search-result-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-general);
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.search-result-item:hover,
+.search-result-item:focus {
+  background: rgba(0,229,160,0.12);
+  outline: none;
+}
+.search-result-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+.search-result-meta,
+.search-result-empty {
+  color: var(--text2);
+  font-size: 0.72rem;
+  text-transform: capitalize;
+}
+.search-result-empty {
+  padding: 12px;
+  text-align: center;
+}
+.search-focus-card {
+  outline: 2px solid var(--accent) !important;
+  box-shadow: 0 0 0 6px rgba(0,229,160,0.16), 0 12px 34px rgba(0,0,0,0.35) !important;
+}
+.modal-overlay {
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px !important;
+}
+.modal-box {
+  max-height: calc(100dvh - 20px) !important;
+  overflow-y: auto !important;
+  margin: auto !important;
+  scrollbar-width: thin;
+}
+@media (max-width: 700px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+  .card-inner {
+    height: 122px !important;
+  }
+  .card-face {
+    padding: 12px !important;
+  }
+  .card-brand-icon {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 10px !important;
+  }
+  .card-brand {
+    font-size: 0.68rem !important;
+  }
+  .card-type {
+    display: block !important;
+    font-size: 0.42rem !important;
+  }
+  .card-chip {
+    width: 28px !important;
+    height: 21px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    display: block !important;
+  }
+  .card-info {
+    padding: 10px !important;
+  }
+  .card-title {
+    font-size: 0.86rem !important;
+    min-height: 2.35em !important;
+  }
+  .card-sub {
+    display: none !important;
+  }
+  .card-price-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+  }
+  .denom-select,
+  .cart-btn,
+  .buy-btn {
+    width: 100% !important;
+    font-size: 0.78rem !important;
+    padding: 9px 6px !important;
+    border-radius: 10px !important;
+  }
+  .modal-box {
+    width: min(96vw, 430px) !important;
+    max-height: calc(100dvh - 18px) !important;
+    padding: 14px !important;
+    border-radius: 16px !important;
+  }
+  .modal-close {
+    top: 10px !important;
+    right: 10px !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .modal-header {
+    gap: 10px !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 12px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+  .preview-card {
+    width: 78px !important;
+    height: 50px !important;
+    padding: 7px !important;
+  }
+  .preview-emoji {
+    width: 22px !important;
+    height: 22px !important;
+  }
+  .preview-brand,
+  .preview-type {
+    display: none !important;
+  }
+  .modal-product-name {
+    font-size: 0.95rem !important;
+    line-height: 1.2 !important;
+  }
+  .modal-amount-display {
+    font-size: 1.28rem !important;
+  }
+  .step-badge {
+    font-size: 0.7rem !important;
+    padding: 5px 10px !important;
+    margin-bottom: 10px !important;
+  }
+  .form-grid {
+    gap: 8px !important;
+    margin-bottom: 12px !important;
+  }
+  .form-group {
+    gap: 4px !important;
+  }
+  .form-group label {
+    font-size: 0.74rem !important;
+  }
+  .form-group input {
+    font-size: 0.82rem !important;
+    padding: 9px 10px !important;
+    border-radius: 9px !important;
+  }
+  .rate-box {
+    padding: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  .rate-title {
+    margin-bottom: 8px !important;
+    font-size: 0.74rem !important;
+  }
+  .rate-grid {
+    gap: 6px !important;
+  }
+  .rate-val {
+    font-size: 0.76rem !important;
+  }
+  .payment-methods {
+    gap: 7px !important;
+    margin-bottom: 10px !important;
+  }
+  .pay-option {
+    padding: 9px 10px !important;
+    border-radius: 10px !important;
+    gap: 9px !important;
+  }
+  .pay-icon .ui-icon,
+  .pay-icon .coin-icon,
+  .pay-icon img,
+  .pay-icon svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .pay-name {
+    font-size: 0.78rem !important;
+  }
+  .pay-addr {
+    font-size: 0.58rem !important;
+  }
+  .copy-btn {
+    padding: 5px 8px !important;
+    font-size: 0.64rem !important;
+  }
+  .selected-method {
+    padding: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  .selected-amount-crypto {
+    font-size: 1.1rem !important;
+    margin-bottom: 8px !important;
+  }
+  .confirm-note {
+    font-size: 0.68rem !important;
+    padding: 8px 10px !important;
+    margin-bottom: 8px !important;
+  }
+  .txid-payment-field {
+    margin-bottom: 10px !important;
+  }
+  .modal-footer-btns {
+    gap: 8px !important;
+  }
+  .btn-back,
+  .btn-confirm,
+  .btn-next,
+  .btn-done {
+    font-size: 0.82rem !important;
+    padding: 10px 12px !important;
+    border-radius: 10px !important;
+  }
+  .site-search {
+    position: relative !important;
+  }
+  .search-results {
+    max-height: 260px;
+  }
+}
+@media (max-width: 380px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+  .card-inner {
+    height: 112px !important;
+  }
+  .card-title {
+    font-size: 0.8rem !important;
+  }
+  .denom-select,
+  .cart-btn,
+  .buy-btn {
+    font-size: 0.72rem !important;
+    padding: 8px 5px !important;
+  }
+}
