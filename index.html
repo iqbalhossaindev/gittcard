@@ -62,7 +62,7 @@
 
 <!-- ========== TOP OFFER BAR ========== -->
 <div class="offer-bar" role="banner">
-  <span class="offer-text">First purchase offer: use <strong>NEW20</strong> for 20% off orders $500+.</span>
+  <span class="offer-text">First purchase: use <strong>NEW20</strong> for 20% off orders $500+.</span>
   <span class="offer-sub">Maximum discount $1000.</span>
 </div>
 
@@ -81,6 +81,11 @@
       <a href="#travel">Travel</a>
       <a href="#mobile">Mobile</a>
     </nav>
+    <form class="site-search" role="search" onsubmit="event.preventDefault(); searchProducts();">
+      <input type="search" id="productSearch" placeholder="Search gift cards..." aria-label="Search gift cards" oninput="searchProducts()" />
+      <button type="submit" class="search-btn" aria-label="Search products">Search</button>
+      <button type="button" class="search-clear" onclick="clearProductSearch()" aria-label="Clear search">×</button>
+    </form>
     <div class="header-badge">⚡ Crypto Accepted</div>
   </div>
 </header>
@@ -120,6 +125,8 @@
   <button class="cat-btn" onclick="filterCat('mobile')">📱 Mobile</button>
   <button class="cat-btn" onclick="filterCat('crypto')">💎 Universal</button>
 </div>
+
+<div class="search-empty" id="searchEmpty" hidden>No gift card found. Try another search.</div>
 
 <!-- ========== MAIN GRID ========== -->
 <main class="main-container">
@@ -669,7 +676,7 @@
       <a href="#travel">Travel</a>
       <a href="#mobile">Mobile</a>
     </div>
-    <p class="footer-copy">© 2025 GiftWalmart.com — All rights reserved. Digital gift cards for instant delivery worldwide.</p>
+    <p class="footer-copy">© 2016 GiftWalmart.com - All rights reserved. Digital gift cards for instant delivery worldwide.</p>
   </div>
 </footer>
 

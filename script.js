@@ -749,37 +749,42 @@ document.getElementById('paymentModal').addEventListener('click', function(e) {
   if (e.target === this) closePayment();
 });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.05 });
-
-document.querySelectorAll('.gift-card').forEach((card, i) => {
-  card.style.opacity = '0';
-  card.style.transform = 'translateY(30px)';
-  card.style.transition = `opacity 0.5s ease ${(i % 9) * 0.06}s, transform 0.5s ease ${(i % 9) * 0.06}s`;
-  observer.observe(card);
-});
-
 document.querySelectorAll('.gift-card').forEach(card => {
-  const inner = card.querySelector('.card-face.card-front');
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width  - 0.5;
-    const y = (e.clientY - rect.top)  / rect.height - 0.5;
-    if (inner) {
-      inner.style.transform = `perspective(600px) rotateY(${x * 12}deg) rotateX(${-y * 10}deg) scale(1.02)`;
-    }
-  });
-  card.addEventListener('mouseleave', () => {
-    if (inner) {
-      inner.style.transform = '';
-    }
-  });
+  card.classList.add('card-ready');
 });
+
+function searchProducts() {
+  const input = document.getElementById('productSearch');
+  const empty = document.getElementById('searchEmpty');
+  if (!input) return;
+  const query = input.value.trim().toLowerCase();
+  let visibleCount = 0;
+
+  document.querySelectorAll('.section-block').forEach(section => {
+    let sectionVisible = false;
+    section.querySelectorAll('.gift-card').forEach(card => {
+      const name = (card.dataset.name || card.querySelector('.card-title')?.textContent || '').toLowerCase();
+      const category = (card.dataset.cat || '').toLowerCase();
+      const visible = !query || name.includes(query) || category.includes(query);
+      card.classList.toggle('search-hidden', !visible);
+      if (visible) {
+        visibleCount += 1;
+        sectionVisible = true;
+      }
+    });
+    section.classList.toggle('search-hidden', !sectionVisible);
+  });
+
+  if (empty) empty.hidden = visibleCount !== 0;
+}
+
+function clearProductSearch() {
+  const input = document.getElementById('productSearch');
+  if (input) {
+    input.value = '';
+    searchProducts();
+    input.focus();
+  }
+}
 
 console.log('GiftWalmart loaded successfully.');
